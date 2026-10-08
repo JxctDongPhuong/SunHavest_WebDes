@@ -1,155 +1,166 @@
-/**
- * Core Engine: js/core.js
- * Quản lý nạp dữ liệu JSON, áp dụng Theme tokens động, nạp font, và dựng Web Components JIT
- */
+// init app
+window.appState = {
+  currentBrand: 'brand-b',
+  data: null
+};
 
-async function initApp() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const brandId = urlParams.get('brand') || localStorage.getItem('selected_brand') || 'brand-b';
-  const page = document.body.dataset.page || 'home';
-
+// fetch brand data 
+export async function loadBrandData(brandId = 'brand-b') {
   try {
-    const res = await fetch(`data/${brandId}.json`);
-    if (!res.ok) throw new Error(`Không tìm thấy file cấu hình data/${brandId}.json`);
-    const data = await res.json();
-
-    // 1. Áp dụng CSS Variables Theme
-    applyTheme(data);
-
-    // 2. Cập nhật Title & Favicon
-    document.title = `${data.name} — ${data.tagline || data.slogan}`;
-    updateFavicon(data.favicon);
-
-    // 3. Dựng các section Web Components theo cấu hình JSON
-    const appEl = document.querySelector('#app');
-    if (!appEl) {
-      console.error('Không tìm thấy phần tử #app');
-      return;
+    // waiting until get response
+    const response = await fetch(`data/${brandId}.json`);
+    if (!response.ok) {
+      throw new Error(`can't fetch brand data: ${brandId}`);
     }
-    appEl.innerHTML = ''; // Reset container
+    const data = await response.json();
 
-    const pageSections = data.pages?.[page] || [];
-    for (const sec of pageSections) {
-      try {
-        // Nạp dynamic component module tương ứng
-        await import(`./components/wl-${sec.type}.js`);
-        
-        const el = document.createElement(`wl-${sec.type}`);
-        el.config = sec;
-        el.data = sec.source ? data[sec.source] : data;
-        appEl.appendChild(el);
-      } catch (err) {
-        console.warn(`[Core] Không dựng được section: wl-${sec.type}`, err);
-      }
-    }
+    // update state
+    window.appState.currentBrand = brandId;
+    window.appState.data = data;
 
-    // 4. Khởi tạo Floating Brand Switcher hỗ trợ chấm thi & demo
-    setupBrandSwitcher(brandId);
-
-    // 5. Khởi tạo Bảng điều khiển Tùy chỉnh Giao diện Trực tiếp (Live Customizer)
-    const { setupLiveCustomizer } = await import('./customizer.js');
-    setupLiveCustomizer(data, brandId);
-
-  } catch (error) {
-    console.error('[Core Error]:', error);
-    const appEl = document.querySelector('#app');
+    return data;
+  } catch (e) {
+    console.error('Error loading brand data:', e);
+    const appEl = document.getElementById('app');
     if (appEl) {
       appEl.innerHTML = `
-        <div style="padding: 3rem; text-align: center; color: #ef4444;">
-          <h2>Lỗi tải dữ liệu cấu hình</h2>
-          <p>${error.message}</p>
-          <p style="margin-top: 1rem; color: #64748b;">Gợi ý: Cần chạy website qua local web server (ví dụ Live Server, npx serve, hoặc python -m http.server) để trình duyệt cho phép fetch() JSON tĩnh.</p>
+        <div style="padding: 40px; text-align: center;">
+          <h2 style="color: red; margin-bottom: 12px;">❌ Error</h2>
+          <p>Không thể tải dữ liệu thương hiệu. Vui lòng kiểm tra lại file JSON.</p>
+          <button onclick="loadBrandData('brand-a')" style="margin-top: 16px; padding: 8px 16px; cursor: pointer;">Thử lại Brand A</button>
         </div>
       `;
     }
+    return null;
   }
 }
 
-/**
- * Ghi đè biến CSS vào :root dựa trên đối tượng theme của từng brand
- */
-function applyTheme(data) {
-  const root = document.documentElement.style;
-  const theme = data.theme || {};
+// Adding design tokens to CSS variables (:root)
+export function applyTheme(theme = {}, data = {}) {
+  const root = document.documentElement;
 
-  if (theme.colorPrimary) root.setProperty('--color-primary', theme.colorPrimary);
-  if (theme.colorPrimaryHover) root.setProperty('--color-primary-hover', theme.colorPrimaryHover);
-  if (theme.colorPrimaryLight) root.setProperty('--color-primary-light', theme.colorPrimaryLight);
-  if (theme.colorPrimarySubtle) root.setProperty('--color-primary-subtle', theme.colorPrimarySubtle);
-  if (theme.colorBg) root.setProperty('--color-bg', theme.colorBg);
-  if (theme.colorSurface) root.setProperty('--color-surface', theme.colorSurface);
-
+  if (theme.colorPrimary) {
+    root.style.setProperty('--color-primary', theme.colorPrimary);
+  }
+  if (theme.colorPrimaryHover) {
+    root.style.setProperty('--color-primary-hover', theme.colorPrimaryHover);
+  }
+  if (theme.colorPrimaryLight) {
+    root.style.setProperty('--color-primary-light', theme.colorPrimaryLight);
+  }
+  if (theme.colorPrimarySubtle) {
+    root.style.setProperty('--color-primary-subtle', theme.colorPrimarySubtle);
+  }
+  if (theme.colorPrimarySoft) {
+    root.style.setProperty('--color-primary-soft', theme.colorPrimarySoft);
+  }
+  if (theme.colorBg) {
+    root.style.setProperty('--color-bg', theme.colorBg);
+  }
+  if (theme.colorSurface) {
+    root.style.setProperty('--color-surface', theme.colorSurface);
+  }
   if (theme.fontHeading) {
-    root.setProperty('--font-heading', `"${theme.fontHeading}", system-ui, -apple-system, sans-serif`);
-    root.setProperty('--font-body', `"${theme.fontHeading}", system-ui, -apple-system, sans-serif`);
-    loadGoogleFont(theme.fontHeading);
+    root.style.setProperty('--font-heading', `'${theme.fontHeading}', sans-serif`);
+    loadGoogleFonts(theme.fontHeading);
+  }
+
+  // update page title
+  if (data.name && data.tagline) {
+    document.title = `${data.name} — ${data.tagline}`;
+  }
+
+  //update Favicon
+  if (data.favicon) {
+    let faviconEl = document.querySelector("link[rel*='icon']");
+    if (!faviconEl) {
+      faviconEl = document.createElement('link');
+      faviconEl.rel = 'shortcut icon';
+      document.head.appendChild(faviconEl);
+    }
+    faviconEl.href = data.favicon;
   }
 }
 
-/**
- * Tải động Google Font nếu cần
- */
-function loadGoogleFont(fontName) {
-  const id = `google-font-${fontName.toLowerCase().replace(/\s+/g, '-')}`;
-  if (!document.getElementById(id)) {
-    const link = document.createElement('link');
-    link.id = id;
-    link.rel = 'stylesheet';
-    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName)}:wght@400;500;600;700;800&display=swap`;
-    document.head.appendChild(link);
+// add font from gg
+function loadGoogleFonts(fontName) {
+  const fontId = `gfont-${fontName.toLowerCase().replace(/\s+/g, '')}`;
+  // stop when font is loaded
+  if (!document.getElementById(fontId)) {
+    // add font to head website if not loaded
+    const fontLink = document.createElement('link');
+    fontLink.id = fontId;
+    fontLink.rel = 'stylesheet';
+    fontLink.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName)}:wght@400;500;600;700&display=swap`;
+    document.head.appendChild(fontLink);
   }
 }
 
-/**
- * Cập nhật Favicon
- */
-function updateFavicon(url) {
-  if (!url) return;
-  let link = document.querySelector("link[rel~='icon']");
-  if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.head.appendChild(link);
+// render components to #app
+export async function renderPage(data) {
+  const appEl = document.getElementById('app');
+  if (!appEl || !data) return;
+
+  const pageKey = document.body.dataset.page || 'home';
+  const sections = data.pages?.[pageKey];
+
+  if (!sections) {
+    appEl.innerHTML = '<p>Page not found</p>';
+    return;
   }
-  link.href = url;
+
+  // delete all old data
+  appEl.innerHTML = '';
+
+  for (const sec of sections) {
+    const type = sec.type;
+    const tagName = `wl-${type}`;
+
+    try {
+      // adding dynamic component file js 
+      await import(`./components/${tagName}.js`);
+
+      // create custom element card
+      const el = document.createElement(tagName);
+
+      // Assign section configuration (tag, title, subtitle, source,...)
+      el.config = sec;
+
+      // defining the value of custom element 
+      if (sec.source && data[sec.source]) {
+        el.data = data[sec.source];
+      } else if (data[type]) {
+        el.data = data[type];
+      } else {
+        el.data = data;
+      }
+
+      // append
+      appEl.appendChild(el);
+
+    } catch (e) {
+      console.warn(`⚠️ can't not loaded component ${tagName}:`, e.message);
+    }
+  }
+
+  // turn on live customizer if they have
+  if (window.initCustomizer) {
+    window.initCustomizer(data);
+    console.log('✅ Live Customizer is running');
+  }
 }
 
-/**
- * Tạo widget chọn cấu hình (Brand Switcher) nổi ở góc màn hình để demo cho BGK
- */
-function setupBrandSwitcher(currentBrand) {
-  if (document.getElementById('brand-switcher')) return;
-
-  const switcher = document.createElement('div');
-  switcher.id = 'brand-switcher';
-  switcher.innerHTML = `
-    <span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-      </svg>
-      Cấu hình:
-    </span>
-    <select id="brand-select-input" aria-label="Chọn cấu hình thương hiệu">
-      <option value="brand-a" ${currentBrand === 'brand-a' ? 'selected' : ''}>Brand A: CodeNest (IT/Code)</option>
-      <option value="brand-b" ${currentBrand === 'brand-b' ? 'selected' : ''}>Brand B: CareerPath (Hướng nghiệp)</option>
-      <option value="brand-c" ${currentBrand === 'brand-c' ? 'selected' : ''}>Brand C: SkillWorks (Dạy nghề)</option>
-    </select>
-  `;
-
-  document.body.appendChild(switcher);
-
-  const select = switcher.querySelector('#brand-select-input');
-  select.addEventListener('change', (e) => {
-    const newBrand = e.target.value;
-    localStorage.setItem('selected_brand', newBrand);
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set('brand', newBrand);
-    window.location.href = newUrl.toString();
-  });
+async function initApp() {
+  // load brand data 
+  const brandData = await loadBrandData('brand-b');
+  if (brandData) {
+    applyTheme(brandData.theme, brandData);
+    await renderPage(brandData);
+    console.log('✅ Page rendered', brandData.name);
+  }
 }
 
-// Chạy khởi tạo khi DOM sẵn sàng
+// waiting for DOM is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
