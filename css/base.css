@@ -1,22 +1,29 @@
 :root {
-    /* dynamic : core */
-    --color-primary: #1358E8 --color-primary-hover: #0F47BD --color-primary-light: #E8F0FF;
+    /* dynamic : core (sẽ được core.js ghi đè theo từng Brand) */
+    --color-primary: #1358E8;
+    --color-primary-hover: #0F47BD;
+    --color-primary-light: #E8F0FF;
     --color-primary-subtle: #F3F7FF;
     --color-primary-soft: #BCD3FF;
-    --color-bg: #FFFFFF --color-bg-surface: #FFFFFF --font-heading: 'Be Vietnam Pro', system-ui, sans-serif;
+    --color-bg: #FFFFFF;
+    --color-surface: #FFFFFF;
+    --font-heading: 'Be Vietnam Pro', system-ui, sans-serif;
     --radius-primary: 10px;
 
-    /* static : project */
+    /* static : project (dùng chung cho toàn bộ dự án) */
     --font-body: 'Be Vietnam Pro', sans-serif;
-    --color-text-main: #252525 --color-text-muted:#707070 --color-border:;
+    --color-text-main: #252525;
+    --color-text-muted: #707070;
+    --color-border: #E5E7EB;
     --radius-md: 16px;
     --radius-lg: 24px;
     --radius-xl: 32px;
-    --shadow-md: 0 12px 32px rgba(18, 64, 146, 0, 125);
-    --shadow-lg: 0 16px 48px rgba(18, 64, 146, 0.078);
+    --shadow-md: 0 12px 32px rgba(18, 64, 146, 0.12);
+    --shadow-lg: 0 16px 48px rgba(18, 64, 146, 0.08);
     --container-max: 1440px;
     --page-padding: 96px;
 }
+
 
 *,
 *::before,
@@ -251,5 +258,3 @@ img {
     cursor: pointer;
     outline: none;
 }
-
-sdadwadadw
