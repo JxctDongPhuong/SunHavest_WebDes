@@ -1,0 +1,244 @@
+{
+  "id": "brand-a",
+  "name": "CodeNest",
+  "tagline": "Học Lập Trình Thực Chiến",
+  "slogan": "Nền tảng đào tạo lập trình thực chiến & cam kết việc làm",
+  "cta": "Nhận Lộ Trình Học",
+  "favicon": "https://img.icons8.com/color/96/code.png",
+  "theme": {
+    "colorPrimary": "#1d4ed8",
+    "colorPrimaryHover": "#1e40af",
+    "colorPrimaryLight": "#eff6ff",
+    "colorPrimarySubtle": "rgba(29, 78, 216, 0.08)",
+    "colorBg": "#ffffff",
+    "colorSurface": "#f8fafc",
+    "fontHeading": "Plus Jakarta Sans"
+  },
+  "menu": [
+    {
+      "label": "Khóa học",
+      "href": "#programs",
+      "children": [
+        { "label": "Frontend Chuyên Sâu", "desc": "HTML, CSS, Modern JS, React & Next.js", "href": "#programs" },
+        { "label": "Backend & Cloud", "desc": "Node.js, PostgreSQL, Docker & Microservices", "href": "#programs" },
+        { "label": "Fullstack Master", "desc": "Từ zero đến Senior Junior Developer", "href": "#programs" },
+        { "label": "Luyện Phỏng Vấn Tech", "desc": "Data Structures, Algorithm & System Design", "href": "#programs" }
+      ]
+    },
+    { "label": "Phương pháp", "href": "#features" },
+    { "label": "Lộ trình 3 bước", "href": "#steps" },
+    { "label": "Kết quả học viên", "href": "#testimonials" },
+    { "label": "Hỏi đáp", "href": "#faq" },
+    { "label": "Liên hệ", "href": "#contact" }
+  ],
+  "pages": {
+    "home": [
+      { "type": "header" },
+      { "type": "hero", "variant": "split" },
+      { "type": "cards", "source": "programs", "tag": "Chương trình tiêu biểu", "title": "Khóa học lập trình chuẩn doanh nghiệp", "subtitle": "Giáo trình cập nhật liên tục theo nhu cầu tuyển dụng thực tế của các tập đoàn công nghệ" },
+      { "type": "features", "source": "features", "tag": "Phương pháp độc quyền", "title": "Tại sao CodeNest giúp bạn đi làm sớm hơn?", "subtitle": "Mô phỏng 100% quy trình làm việc Agile/Scrum của các công ty công nghệ hàng đầu" },
+      { "type": "steps", "source": "steps", "tag": "Lộ trình 3 bước", "title": "Hành trình bứt phá từ con số 0", "subtitle": "Quy trình học tập khoa học giúp bạn vững nền tảng, thạo kỹ năng và tự tin nhận offer" },
+      { "type": "stats", "source": "stats" },
+      { "type": "testimonials", "source": "testimonials", "tag": "Câu chuyện thành công", "title": "Học viên CodeNest nói gì?", "subtitle": "Hơn 5.000 học viên đã chuyển ngành và thăng tiến sự nghiệp thành công cùng chúng tôi" },
+      { "type": "faq", "source": "faq", "limit": 4, "tag": "Giải đáp thắc mắc", "title": "Câu hỏi thường gặp", "subtitle": "Mọi điều bạn cần biết trước khi bắt đầu hành trình lập trình tại CodeNest" },
+      { "type": "contact", "source": "contact", "tag": "Tư vấn miễn phí", "title": "Đăng ký nhận lộ trình học cá nhân hóa", "subtitle": "Chuyên gia học tập sẽ liên hệ tư vấn chi tiết trong vòng 15 phút" },
+      { "type": "footer" },
+      { "type": "sticky-cta" }
+    ]
+  },
+  "hero": {
+    "badge": "Tuyển sinh Khóa K28 — Cam kết việc làm bằng văn bản",
+    "badgeTag": "HOT",
+    "title": "Học lập trình thực chiến, nhận việc trong 6 tháng",
+    "desc": "Lộ trình học theo dự án thực tế, mentor 1-1 hỗ trợ code review hàng ngày. Cam kết kết nối tuyển dụng với mạng lưới 120+ doanh nghiệp công nghệ.",
+    "ctaText": "Đăng ký tư vấn miễn phí",
+    "secondaryCtaText": "Xem bài test năng lực",
+    "trustText": "Hơn 5.200+ học viên đã có việc làm tại FPT, Viettel, VNG, VNPT",
+    "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+    "floatingStat1": { "title": "Cam kết việc làm", "desc": "Hoàn 100% học phí nếu không đỗ", "icon": "✓" },
+    "floatingStat2": { "title": "Review 1-1", "desc": "Sửa từng dòng code trên Git", "icon": "⚡" }
+  },
+  "programs": [
+    {
+      "id": "fe",
+      "badge": "Bán chạy nhất",
+      "title": "Frontend React & Next.js Chuyên Sâu",
+      "desc": "Thành thạo HTML5, Modern CSS, ES6+, TypeScript, React, Next.js và Tailwind CSS qua 5 dự án thực chiến chuẩn production.",
+      "duration": "4 tháng (120 giờ)",
+      "level": "Cơ bản → Nâng cao",
+      "price": "6.800.000 đ",
+      "image": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80",
+      "action": "Xem lộ trình chi tiết"
+    },
+    {
+      "id": "be",
+      "badge": "Tuyển dụng cao",
+      "title": "Backend Node.js & Cloud System",
+      "desc": "Xây dựng hệ thống REST API, GraphQL, PostgreSQL, Redis cache, RabbitMQ và triển khai Docker lên AWS.",
+      "duration": "4.5 tháng (135 giờ)",
+      "level": "Đã có nền tảng JS",
+      "price": "7.500.000 đ",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "action": "Xem lộ trình chi tiết"
+    },
+    {
+      "id": "fs",
+      "badge": "Lộ trình đầy đủ",
+      "title": "Fullstack Software Engineer Master",
+      "desc": "Khóa học toàn diện bao gồm cả Frontend, Backend, DevOps cơ bản và đồ án tốt nghiệp bảo vệ trước hội đồng tuyển dụng.",
+      "duration": "6 tháng (200 giờ)",
+      "level": "Dành cho người mới",
+      "price": "11.900.000 đ",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
+      "action": "Xem lộ trình chi tiết"
+    },
+    {
+      "id": "interview",
+      "badge": "Cấp tốc 4 tuần",
+      "title": "Luyện Phỏng Vấn Thuật Toán & System Design",
+      "desc": "Ôn luyện 150 câu hỏi LeetCode kinh điển, rèn luyện tư duy thiết kế hệ thống và mock interview 1-1 với Tech Lead.",
+      "duration": "1 tháng (30 giờ)",
+      "level": "Junior → Middle",
+      "price": "3.900.000 đ",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80",
+      "action": "Xem lộ trình chi tiết"
+    }
+  ],
+  "features": [
+    {
+      "index": "01",
+      "title": "Học theo phương pháp Project-Based mô phỏng dự án thật",
+      "desc": "Không học lý thuyết suông. Học viên tham gia làm sản phẩm thực tế theo mô hình Scrum/Sprint, quản lý task trên Jira và tương tác qua GitHub như một đội ngũ chuyên nghiệp.",
+      "highlights": [
+        "100% bài học gắn liền với source code dự án doanh nghiệp",
+        "Thực hành viết Clean Code, Unit Test và tối ưu hiệu năng",
+        "Bảo vệ đồ án trực tiếp với giám đốc công nghệ"
+      ],
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "02",
+      "title": "Đội ngũ Mentor 1-1 đồng hành & Code Review chi tiết",
+      "desc": "Mỗi bài nộp đều được các Senior Engineer review chi tiết từng dòng code, hướng dẫn refactor theo chuẩn convention công nghiệp và giải đáp khúc mắc trong vòng 30 phút.",
+      "highlights": [
+        "Sửa bài tỉ mỉ, chỉ ra các lỗi bảo mật và bug tiềm ẩn",
+        "Phiên hỗ trợ trực tuyến 1-1 khi gặp bài toán khó",
+        "Định hướng phong cách lập trình chuyên nghiệp"
+      ],
+      "image": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "03",
+      "title": "Mạng lưới 120+ đối tác tuyển dụng công nghệ lớn",
+      "desc": "Bộ phận Career Services hỗ trợ sửa CV chuẩn ATS, tổ chức các buổi Mock Interview và gửi hồ sơ trực tiếp tới các công ty đối tác mà không cần nộp đơn dạo.",
+      "highlights": [
+        "Cam kết việc làm bằng văn bản pháp lý",
+        "Luyện phỏng vấn chuyên sâu về thuật toán và kỹ năng mềm",
+        "Cơ hội tuyển thẳng vào các đối tác chiến lược"
+      ],
+      "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80"
+    }
+  ],
+  "steps": [
+    {
+      "num": "01",
+      "title": "Đánh giá năng lực & Lập kế hoạch học tập",
+      "desc": "Thực hiện bài kiểm tra tư duy logic và nhận lộ trình học tập được may đo riêng dựa trên mục tiêu nghề nghiệp và quỹ thời gian của bạn."
+    },
+    {
+      "num": "02",
+      "title": "Học tương tác & Tích lũy Portfolio",
+      "desc": "Tham gia các buổi học tương tác cao, hoàn thành các sprint dự án và xây dựng hồ sơ GitHub ấn tượng để gây ấn tượng mạnh với nhà tuyển dụng."
+    },
+    {
+      "num": "03",
+      "title": "Luyện phỏng vấn & Nhận offer",
+      "desc": "Tham gia vòng phỏng vấn thử nghiệm thực tế với HR và Tech Lead, nhận phản hồi cải thiện và kết nối trực tiếp với doanh nghiệp phù hợp."
+    }
+  ],
+  "stats": [
+    { "value": "98.2%", "label": "Học viên có việc làm sau 90 ngày" },
+    { "value": "5.200+", "label": "Lập trình viên đã tốt nghiệp" },
+    { "value": "18.5 Tr", "label": "Lương khởi điểm trung bình (VND/tháng)" },
+    { "value": "120+", "label": "Doanh nghiệp đối tác tuyển dụng" }
+  ],
+  "testimonials": [
+    {
+      "name": "Nguyễn Hoàng Nam",
+      "role": "Frontend Developer tại VNG Corporation",
+      "quote": "Từ một người học trái ngành xây dựng, mình đã chuyển đổi thành công sau 6 tháng học tại CodeNest. Các buổi code review của mentor đã giúp mình hiểu sâu về tư duy component và clean code.",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Trần Minh Quang",
+      "role": "Node.js Developer tại FPT Software",
+      "quote": "Giáo trình rất sát với thực tế đi làm. Khi vào dự án của công ty, mình không bị bỡ ngỡ với Docker hay CI/CD vì đã được thực hành liên tục trong đồ án tốt nghiệp.",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Lê Thu Hà",
+      "role": "Web Developer tại Shopee Vietnam",
+      "quote": "Ấn tượng nhất là đội ngũ cố vấn việc làm. Các anh chị đã sửa lại toàn bộ CV và luyện phỏng vấn kỹ thuật giúp mình tự tin đỗ ngay offer đầu tiên với mức đãi ngộ vượt mong đợi.",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Người chưa biết gì về lập trình có theo học được không?",
+      "a": "Hoàn toàn được! Lộ trình của CodeNest được thiết kế từ mức nhập môn cơ bản nhất, tập trung rèn luyện tư duy logic toán - tin trước khi bước vào cú pháp ngôn ngữ."
+    },
+    {
+      "q": "Chính sách cam kết việc làm được thực hiện như thế nào?",
+      "a": "Học viên hoàn thành đủ 85% bài tập và vượt qua bài bảo vệ đồ án sẽ được ký hợp đồng cam kết giới thiệu việc làm. Nếu sau 6 tháng chưa có việc, CodeNest hoàn 100% học phí."
+    },
+    {
+      "q": "Tôi bận đi làm/đi học thì thời gian học có linh động không?",
+      "a": "CodeNest có lớp học linh hoạt vào buổi tối và cuối tuần. Toàn bộ bài giảng và tài liệu code đều được lưu lại trên portal để bạn có thể xem lại bất cứ lúc nào."
+    },
+    {
+      "q": "Có được hỗ trợ trả góp học phí không?",
+      "a": "Chúng tôi hỗ trợ chương trình trả góp 0% lãi suất kỳ hạn 3 - 6 - 12 tháng qua thẻ tín dụng hoặc các đối tác tài chính giáo dục uy tín."
+    }
+  ],
+  "contact": {
+    "title": "Liên hệ CodeNest",
+    "desc": "Để lại thông tin để được đội ngũ chuyên gia tư vấn lộ trình học lập trình phù hợp nhất với trình độ hiện tại của bạn.",
+    "phone": "024 8888 6789",
+    "email": "tuyensinh@codenest.edu.vn",
+    "address": "Tầng 5, Tòa nhà Innovation Hub, Cầu Giấy, Hà Nội",
+    "programs": ["Frontend React & Next.js", "Backend Node.js & Cloud", "Fullstack Software Engineer", "Luyện Phỏng Vấn Tech"]
+  },
+  "footer": {
+    "about": "CodeNest là hệ sinh thái đào tạo lập trình thực chiến, kết nối nhân lực công nghệ thông tin chất lượng cao với các doanh nghiệp trong và ngoài nước.",
+    "copyright": "© 2026 CodeNest Academy. Đồ án dự thi Thiết kế Web.",
+    "columns": [
+      {
+        "title": "Chương trình đào tạo",
+        "links": [
+          { "label": "Khóa Frontend React", "href": "#programs" },
+          { "label": "Khóa Backend Node.js", "href": "#programs" },
+          { "label": "Khóa Fullstack Engineer", "href": "#programs" },
+          { "label": "Luyện Phỏng Vấn Tech", "href": "#programs" }
+        ]
+      },
+      {
+        "title": "Về CodeNest",
+        "links": [
+          { "label": "Phương pháp đào tạo", "href": "#features" },
+          { "label": "Đội ngũ Mentor", "href": "#" },
+          { "label": "Doanh nghiệp đối tác", "href": "#" },
+          { "label": "Cam kết việc làm", "href": "#" }
+        ]
+      },
+      {
+        "title": "Hỗ trợ học viên",
+        "links": [
+          { "label": "Quy chế đào tạo", "href": "#" },
+          { "label": "Chính sách học phí", "href": "#" },
+          { "label": "Cộng đồng Discord", "href": "#" },
+          { "label": "Cổng thông tin tuyển dụng", "href": "#" }
+        ]
+      }
+    ]
+  }
+}

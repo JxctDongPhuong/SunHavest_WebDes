@@ -1,0 +1,322 @@
+{
+  "id": "brand-c",
+  "name": "SkillWorks",
+  "tagline": "Vững Tay Nghề — Chắc Tương Lai",
+  "slogan": "Học viện đào tạo nghề & kỹ năng ứng dụng thực tế",
+  "cta": "Nhận Học Bổng Nghề",
+  "favicon": "https://img.icons8.com/color/96/hammer.png",
+  "theme": {
+    "colorPrimary": "#d97706",
+    "colorPrimaryHover": "#b45309",
+    "colorPrimaryLight": "#fffbeb",
+    "colorPrimarySubtle": "rgba(217, 119, 6, 0.1)",
+    "colorBg": "#fffbf2",
+    "colorSurface": "#ffffff",
+    "fontHeading": "Montserrat"
+  },
+  "menu": [
+    {
+      "label": "Ngành nghề đào tạo",
+      "href": "#programs",
+      "children": [
+        {
+          "label": "Thiết Kế Đồ Họa & UI/UX",
+          "desc": "Thực chiến thiết kế ấn phẩm & sản phẩm số",
+          "href": "#programs"
+        },
+        {
+          "label": "Điện Tử & Tự Động Hóa",
+          "desc": "Vận hành PLC, vi điều khiển và mạch công nghiệp",
+          "href": "#programs"
+        },
+        {
+          "label": "Cơ Khí Chính Xác & CNC",
+          "desc": "Lập trình máy phay, tiện CNC tiêu chuẩn quốc tế",
+          "href": "#programs"
+        },
+        {
+          "label": "Nghệ Thuật Pha Chế & F&B",
+          "desc": "Pha chế Barista, Bartender & Quản trị quầy bar",
+          "href": "#programs"
+        }
+      ]
+    },
+    { "label": "Phương pháp đào tạo", "href": "#features" },
+    { "label": "Lộ trình học", "href": "#steps" },
+    { "label": "Cựu học viên", "href": "#testimonials" },
+    { "label": "Hỏi đáp", "href": "#faq" },
+    { "label": "Đăng ký học", "href": "#contact" }
+  ],
+  "pages": {
+    "home": [
+      { "type": "header" },
+      { "type": "hero", "variant": "split" },
+      {
+        "type": "cards",
+        "source": "programs",
+        "tag": "Ngành học xu hướng",
+        "title": "Khóa học nghề thực hành chuẩn quốc tế",
+        "subtitle": "Thời lượng 80% thực hành tại xưởng, cấp chứng chỉ nghề nghiệp có giá trị toàn quốc"
+      },
+      {
+        "type": "features",
+        "source": "features",
+        "tag": "Ưu điểm vượt trội",
+        "title": "Tại sao chọn học nghề tại SkillWorks?",
+        "subtitle": "Mô hình đào tạo kép gắn liền thực tập tại doanh nghiệp ngay trong kỳ học"
+      },
+      {
+        "type": "steps",
+        "source": "steps",
+        "tag": "3 Bước thành thạo",
+        "title": "Từ con số 0 đến thợ bậc cao",
+        "subtitle": "Lộ trình đào tạo rõ ràng, giúp học viên làm chủ công nghệ và tay nghề vững vàng"
+      },
+      { "type": "stats", "source": "stats" },
+      {
+        "type": "testimonials",
+        "source": "testimonials",
+        "tag": "Học viên tiêu biểu",
+        "title": "Gương mặt thành công từ SkillWorks",
+        "subtitle": "Nghề nghiệp vững vàng, thu nhập ổn định và cơ hội làm việc tại các nhà máy, xưởng lớn"
+      },
+      {
+        "type": "faq",
+        "source": "faq",
+        "limit": 4,
+        "tag": "Giải đáp",
+        "title": "Những câu hỏi thường gặp",
+        "subtitle": "Thông tin chi tiết về học phí, hỗ trợ việc làm và chứng chỉ tốt nghiệp"
+      },
+      {
+        "type": "contact",
+        "source": "contact",
+        "tag": "Tư vấn tuyển sinh",
+        "title": "Đăng ký tham quan xưởng thực hành",
+        "subtitle": "Trải nghiệm 1 buổi học thử miễn phí và nhận voucher học bổng 20%"
+      },
+      { "type": "footer" },
+      { "type": "sticky-cta" }
+    ]
+  },
+  "hero": {
+    "badge": "Tuyển sinh Khóa Kỹ năng Mới — Hỗ trợ 100% chỗ ở ký túc xá",
+    "badgeTag": "HỌC NGHỀ",
+    "title": "Vững tay nghề thực tế, cam kết có việc làm ngay khi tốt nghiệp",
+    "desc": "Chương trình 80% thực hành trên máy móc công nghiệp hiện đại. Học 3 đến 6 tháng, sở hữu chứng chỉ nghề uy tín và việc làm thu nhập ổn định.",
+    "ctaText": "Đăng ký học thử 0 đồng",
+    "secondaryCtaText": "Tham quan xưởng thực hành",
+    "trustText": "Hơn 8.500+ học viên đã ra nghề tại các khu công nghiệp & chuỗi dịch vụ lớn",
+    "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+    "floatingStat1": {
+      "title": "80% Thời lượng",
+      "desc": "Thực hành tại xưởng máy móc",
+      "icon": "⚙"
+    },
+    "floatingStat2": {
+      "title": "Giới thiệu việc",
+      "desc": "100% học viên có việc ngay",
+      "icon": "✓"
+    }
+  },
+  "programs": [
+    {
+      "id": "design-ui",
+      "badge": "Hot ngành số",
+      "title": "Thiết Kế Đồ Họa & UI/UX Ứng Dụng",
+      "desc": "Làm chủ Photoshop, Illustrator, Figma. Thiết kế banner quảng cáo, bộ nhận diện thương hiệu và giao diện ứng dụng di động.",
+      "duration": "3 tháng (90 giờ)",
+      "level": "Mới bắt đầu",
+      "price": "4.800.000 đ",
+      "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&q=80",
+      "action": "Xem giáo trình"
+    },
+    {
+      "id": "automation",
+      "badge": "Kỹ thuật cao",
+      "title": "Điện Công Nghiệp & Tự Động Hóa PLC",
+      "desc": "Thực hành đấu nối tủ điện, lập trình PLC Siemens, biến tần và cảm biến công nghiệp theo quy chuẩn an toàn quốc tế.",
+      "duration": "4 tháng (120 giờ)",
+      "level": "Cơ bản đến nâng cao",
+      "price": "6.200.000 đ",
+      "image": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
+      "action": "Xem xưởng học"
+    },
+    {
+      "id": "cnc-machining",
+      "badge": "Thu nhập cao",
+      "title": "Vận Hành & Lập Trình Máy Phay/Tiện CNC",
+      "desc": "Thành thạo phần mềm Mastercam, đo kiểm chính xác bằng thước cặp, panme và gia công chi tiết cơ khí trên máy CNC hiện đại.",
+      "duration": "4.5 tháng (140 giờ)",
+      "level": "Thực hành xưởng",
+      "price": "7.000.000 đ",
+      "image": "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80",
+      "action": "Chi tiết khóa học"
+    },
+    {
+      "id": "barista-fb",
+      "badge": "Khởi nghiệp nhanh",
+      "title": "Pha Chế Chuyên Nghiệp & Quản Lý Quán Barista",
+      "desc": "Kỹ thuật pha chế Espresso, Latte Art, trà sữa và đồ uống sáng tạo. Kèm kỹ năng tính toán chi phí nguyên liệu và quản lý nhân sự.",
+      "duration": "2 tháng (60 giờ)",
+      "level": "Mọi đối tượng",
+      "price": "3.900.000 đ",
+      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+      "action": "Đăng ký pha chế"
+    }
+  ],
+  "features": [
+    {
+      "index": "01",
+      "title": "Hệ thống xưởng thực hành trang bị công nghệ hiện đại",
+      "desc": "Mỗi học viên một máy/vị trí thao tác riêng biệt. Trang thiết bị đồng bộ với máy móc đang vận hành tại các nhà máy liên doanh hàng đầu.",
+      "highlights": [
+        "100% thời gian thực tế chạm tay vào máy móc công cụ",
+        "Tuân thủ nghiêm ngặt quy trình an toàn lao động quốc tế",
+        "Mở cửa xưởng tự do luyện thêm ngoài giờ học"
+      ],
+      "image": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "02",
+      "title": "Thầy cô là Nghệ nhân & Kỹ sư trưởng giàu kinh nghiệm",
+      "desc": "Cầm tay chỉ việc tận tình. Đội ngũ giảng viên trực tiếp chỉ dẫn từng thao tác chuẩn xác, truyền thụ kinh nghiệm thực chiến từ công trường và phân xưởng.",
+      "highlights": [
+        "Không giấu nghề, hướng dẫn cách xử lý sự cố hỏng hóc thực tế",
+        "Đánh giá tay nghề theo tiêu chuẩn tay nghề ASEAN",
+        "Hỗ trợ kỹ thuật trọn đời sau khi tốt nghiệp"
+      ],
+      "image": "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "03",
+      "title": "Ký kết thực tập có lương & Nhận việc ngay tại doanh nghiệp",
+      "desc": "Từ tháng thứ 3, học viên được gửi thực tập tại các đối tác sản xuất với mức trợ cấp hấp dẫn, được giữ lại làm nhân viên chính thức ngay khi ra trường.",
+      "highlights": [
+        "Đảm bảo 100% học viên có việc làm đúng chuyên môn",
+        "Mức lương khởi điểm từ 9 - 18 triệu đồng/tháng",
+        "Cơ hội xuất khẩu lao động sang Nhật Bản, Đức, Hàn Quốc"
+      ],
+      "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=700&q=80"
+    }
+  ],
+  "steps": [
+    {
+      "step": "Chặng 1",
+      "title": "Tư vấn và chọn nghề phù hợp",
+      "desc": "Bạn học thử 1 buổi miễn phí tại xưởng. Tư vấn viên dựa vào sở thích, sức khỏe và mục tiêu thu nhập để gợi ý nghề phù hợp.",
+      "image": "https://placehold.co/600x800/png"
+    },
+    {
+      "step": "Chặng 2",
+      "title": "Học tay nghề tại xưởng",
+      "desc": "Lớp tối đa 15 người. Mỗi buổi bạn tự tay làm trên thiết bị thật, có thầy kèm và chấm tay nghề theo từng bài.",
+      "image": "https://placehold.co/600x800/png"
+    },
+    {
+      "step": "Chặng 3",
+      "title": "Thực tập tại doanh nghiệp",
+      "desc": "Bạn đi làm thử tại đơn vị đối tác, có người hướng dẫn riêng. Nhiều bạn được nhận việc ngay trong giai đoạn này.",
+      "image": "https://placehold.co/600x800/png"
+    },
+    {
+      "step": "Chặng 4",
+      "title": "Nhận chứng chỉ và giới thiệu việc làm",
+      "desc": "Sau khi đạt bài thi tay nghề, bạn nhận chứng chỉ và được giới thiệu tới các vị trí đang tuyển phù hợp.",
+      "image": "https://placehold.co/600x800/png"
+    }
+  ],
+  "stats": [
+    { "value": "99.1%", "label": "Học viên có việc làm ngay tháng đầu" },
+    { "value": "8.500+", "label": "Thợ lành nghề đã xuất xưởng" },
+    {
+      "value": "12.5 Tr",
+      "label": "Mức lương khởi điểm bình quân (VND/tháng)"
+    },
+    { "value": "60+", "label": "Nhà máy & Doanh nghiệp hợp tác đào tạo" }
+  ],
+  "testimonials": [
+    {
+      "name": "Hoàng Văn Tuấn",
+      "role": "Kỹ thuật viên CNC tại Tập đoàn Hanwha Aero",
+      "quote": "Trước đây mình phân vân giữa học đại học và học nghề. Sau 4 tháng ở SkillWorks, mình đã thành thạo lập trình máy phay và có mức lương 15 triệu chỉ sau 6 tháng đi làm.",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Trần Thị Bích Ngọc",
+      "role": "Chủ tiệm cà phê The Workshop & Barista",
+      "quote": "Khóa pha chế và quản lý quán đã cho mình không chỉ công thức ngon mà còn là tư duy vận hành và kiểm soát cost nguyên liệu chặt chẽ. Quán của mình đã có lãi ngay tháng thứ 2.",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Nguyễn Văn Đức",
+      "role": "Kỹ sư vận hành PLC tại Khu công nghiệp VSIP",
+      "quote": "Thầy cô tại SkillWorks cầm tay chỉ việc vô cùng tận tâm. Các bài tập về xử lý lỗi tủ điện sát hệt như những sự cố mình gặp hàng ngày tại nhà máy hiện tại.",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Chưa tốt nghiệp cấp 3 có đăng ký học nghề được không?",
+      "a": "Hoàn toàn được! SkillWorks tuyển sinh dựa trên bài kiểm tra thực hành đầu vào, không phân biệt bằng cấp học vấn trước đó. Chỉ cần đủ 16 tuổi là có thể tham gia."
+    },
+    {
+      "q": "Trường có ký túc xá cho học viên ở xa không?",
+      "a": "Có! Chúng tôi có khu ký túc xá khang trang, an ninh 24/7 ngay cạnh xưởng thực hành, miễn phí 100% tiền phòng cho học viên có hoàn cảnh khó khăn."
+    },
+    {
+      "q": "Chứng chỉ tốt nghiệp có giá trị như thế nào?",
+      "a": "Sau khóa học, học viên được cấp Chứng chỉ Sơ cấp nghề theo quy định của Tổng cục Giáo dục Nghề nghiệp, có giá trị lưu hành và xin việc trên toàn quốc."
+    },
+    {
+      "q": "Nếu chưa thành thạo sau khóa học có được học lại không?",
+      "a": "Học viên được bảo lưu và học lại MIỄN PHÍ đến khi thành thạo và tự tin ra nghề thì thôi. SkillWorks cam kết trách nhiệm đào tạo trọn đời."
+    }
+  ],
+  "contact": {
+    "title": "Đăng ký học tại SkillWorks",
+    "desc": "Nhận tư vấn chương trình đào tạo nghề, lịch học linh hoạt và đăng ký tham quan xưởng thực hành miễn phí.",
+    "phone": "024 6666 8899",
+    "email": "tuyensinh@skillworks.edu.vn",
+    "address": "Khu Công Nghệ Cao Hòa Lạc, Thạch Thất, Hà Nội",
+    "programs": [
+      "Thiết Kế Đồ Họa & UI/UX",
+      "Điện Công Nghiệp & PLC",
+      "Vận Hành Máy Phay/Tiện CNC",
+      "Pha Chế Barista Chuyên Nghiệp"
+    ]
+  },
+  "footer": {
+    "about": "SkillWorks là học viện đào tạo nghề kiểu mới, chú trọng rèn luyện thực hành tay nghề cao nhằm đáp ứng nhu cầu tuyển dụng của thời kỳ công nghiệp hóa 4.0.",
+    "copyright": "© 2026 SkillWorks Academy. Đồ án dự thi Thiết kế Web.",
+    "columns": [
+      {
+        "title": "Ngành đào tạo",
+        "links": [
+          { "label": "Khóa Đồ Họa UI/UX", "href": "#programs" },
+          { "label": "Khóa Điện Công Nghiệp", "href": "#programs" },
+          { "label": "Khóa Tiện Phay CNC", "href": "#programs" },
+          { "label": "Khóa Barista Pha Chế", "href": "#programs" }
+        ]
+      },
+      {
+        "title": "Về SkillWorks",
+        "links": [
+          { "label": "Cơ sở vật chất xưởng", "href": "#features" },
+          { "label": "Đội ngũ Nghệ nhân", "href": "#" },
+          { "label": "Học bổng & Hỗ trợ", "href": "#" },
+          { "label": "Cơ hội việc làm", "href": "#" }
+        ]
+      },
+      {
+        "title": "Thông tin tuyển sinh",
+        "links": [
+          { "label": "Lịch khai giảng", "href": "#" },
+          { "label": "Ký túc xá học viên", "href": "#" },
+          { "label": "Chính sách học phí", "href": "#" },
+          { "label": "Hồ sơ nhập học", "href": "#" }
+        ]
+      }
+    ]
+  }
+}

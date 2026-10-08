@@ -1,0 +1,253 @@
+# CLAUDE.md — Dự án cuộc thi thiết kế web (chủ đề: Giáo dục và nghề nghiệp)
+
+> File này tổng hợp toàn bộ bối cảnh để Claude Code hiểu dự án. Người dùng nói tiếng Việt, hãy trả lời bằng tiếng Việt; tên file, biến, component, code dùng tiếng Anh.
+> Mục có đánh dấu **[GIẢ ĐỊNH]** là suy luận từ slide, chưa được BTC xác nhận. Đừng coi là sự thật tuyệt đối, hãy nêu rõ khi nó ảnh hưởng đến quyết định.
+
+---
+
+## 1. Bối cảnh cuộc thi
+
+- Cuộc thi thiết kế web của sinh viên. Nhóm **3 người**.
+- **Chủ đề bốc thăm được: Giáo dục và nghề nghiệp (edu và nghề nghiệp).**
+- **Chỉ cần UI/UX và code phía trình duyệt. KHÔNG có backend.** Không server, không database, không API riêng. Mọi dữ liệu nằm trong file JSON tĩnh.
+- Công nghệ: HTML + CSS + JavaScript thuần, dùng Web Components (custom elements `wl-*`). Không cần framework.
+
+### Timeline (từ slide)
+
+| Ngày | Giai đoạn | Yêu cầu |
+|---|---|---|
+| 04/10 | Khai mạc | Phổ biến đề, bốc thăm chủ đề |
+| **05–11/10** | **Vòng loại** (đang ở giai đoạn này) | **1 landing page, ít nhất 3 bản cấu hình.** Làm tại nhà, **11/10 đến chấm trực tiếp** |
+| 12–16/10 | Vòng triển khai | Nghe góp ý từ BGK, sửa lại; làm tại nhà; mở rộng thành website |
+| 18/10 | Chung kết | Website doanh nghiệp hoàn chỉnh có landing page, **tối thiểu 3–5 trang** |
+
+Hệ quả: kiến trúc phải làm chắc ngay từ vòng loại để vòng sau mở rộng từ 1 trang lên 3–5 trang mà không phải viết lại.
+
+---
+
+## 2. Kiến trúc theo đề (từ các slide của BTC)
+
+Slide 12 — Component và Section:
+- **Trang = các section xếp chồng. Mỗi section ghép từ component. Đổi dữ liệu, component giữ nguyên.**
+- **Section**: một phần nội dung trọn vẹn của trang, mỗi section nói một ý, xếp nối tiếp từ trên xuống.
+- **Component**: khối giao diện viết một lần, dùng lại nhiều nơi, đóng gói sẵn HTML + CSS + JS của riêng nó.
+- Các component trong slide: `<wl-header>`, `<wl-hero>`, `<wl-card>` (dùng cho Lợi ích và Sản phẩm), `<wl-faq>`, `<wl-footer>`; ngoài ra có `<wl-page-head>`, `<wl-contact>`, `<wl-sticky-cta>`.
+
+Slide 14 — Cấu tạo một trang (ví dụ `contact.html`):
+
+```html
+<body data-page="contact">
+  <wl-header></wl-header>
+  <main>
+    <wl-page-head image="false"></wl-page-head>
+    <wl-contact></wl-contact>
+    <wl-faq limit="3"></wl-faq>
+  </main>
+  <wl-footer></wl-footer>
+  <wl-sticky-cta></wl-sticky-cta>
+  <script src="js/core.js"></script>
+  <script src="js/app.js"></script>
+</body>
+```
+Quy trình: (1) tạo file HTML mới, (2) thả các section cần dùng, (3) **không viết lại giao diện**.
+
+Slide 15 — Cấu hình dự án:
+- `css/base.css` giữ **màu và font** (biến `:root`: `--color-primary`, `--color-bg`, `--font-heading`).
+- `data/brand-a.json` giữ **nội dung** (`name`, `slogan`, `cta`, `products`...).
+- **"Đổi thương hiệu = đổi file dữ liệu. `core.js` tự điền tiêu đề, favicon, màu, font và nội dung."**
+
+### "3 bản cấu hình" nghĩa là gì **[GIẢ ĐỊNH]**
+
+Một **cấu hình = một thương hiệu**: bộ dữ liệu (JSON) + bộ màu/font, đổ vào **cùng một khung giao diện**. Ba file JSON khác nhau → mở cùng một `index.html` ra ba website trông và đọc khác nhau. Không phải chế độ sáng/tối (dark mode chỉ là điểm cộng, không thay thế được). Không phải 3 trang khác nhau.
+
+Câu hỏi cần hỏi lại BTC: (a) 3 cấu hình có phải 3 thương hiệu khác nhau dùng chung code không; (b) có phải khác cả bố cục (thứ tự section) không hay chỉ màu/font/nội dung; (c) lúc chấm 11/10 nhóm có phải tự đổi cấu hình trực tiếp không; (d) **đề có cho phép dùng AI hỗ trợ viết code không**.
+
+---
+
+## 3. Ý tưởng 3 cấu hình (chủ đề edu) — gợi ý, nhóm có thể đổi
+
+| | A | B | C |
+|---|---|---|---|
+| Tên | CodeNest | CareerPath | SkillWorks |
+| Ý tưởng | Trung tâm lập trình/IT | Hướng nghiệp, tư vấn CV, phỏng vấn | Dạy nghề / kỹ năng thực hành |
+| Đối tượng | Sinh viên, người chuyển nghề | Sinh viên năm cuối, mới ra trường | Học viên học nghề |
+| Màu chính | `#1D4ED8` (xanh dương) | `#0F9D8A` (teal) | `#F59E0B` (cam) |
+| Nền | `#FFFFFF` | `#F6FBFA` | `#FFFBF2` |
+| Font heading | Inter | Poppins | Montserrat |
+
+Cả ba dùng chung 100% component, chỉ khác JSON + biến màu/font.
+
+---
+
+## 4. Thiết kế trang
+
+### Tham khảo: trang chủ Prep (https://prepedu.com/vi/)
+
+Cấu trúc Prep (đã phân tích) và cách ánh xạ:
+
+| Section trên Prep | Component |
+|---|---|
+| Menu (Khóa học có menu con: IELTS, TOEIC, HSK, HSK 3.0, PrepTalk English, IELTS Junior, VSTEP; Kiểm tra đầu vào; Luyện đề; Doanh nghiệp; Blog) + nút "Bắt đầu" | `wl-header` (hỗ trợ menu thả xuống) |
+| Banner lớn + nút "Khám phá ngay" | `wl-hero` |
+| 4 chương trình (IELTS, TOEIC, HSK, Prep Talk) | `wl-section-title` + `wl-card` |
+| 3 tính năng đánh số 01/02/03, bố cục hình trái/phải xen kẽ | `wl-feature` |
+| 3 bước học | `wl-steps` |
+| Học viên xuất sắc + điểm, "100.000+ học viên" | `wl-stats` + `wl-person` |
+| Đánh giá của học viên (sao, avatar, lời nhận xét) | `wl-person` / `wl-review` |
+| Đối tác, giải thưởng | `wl-partners`, `wl-awards` (có thể bỏ khi thiếu thời gian) |
+| Tải ứng dụng | `wl-app-cta` |
+| Chân trang | `wl-footer` |
+
+### Bản rút gọn cho vòng loại (~8 section)
+
+1. `wl-header` · 2. `wl-hero` · 3. Chương trình (`wl-card`) · 4. Tính năng (`wl-feature`) · 5. 3 bước (`wl-steps`) · 6. Số liệu + học viên/đánh giá (`wl-stats` + `wl-person`) · 7. `wl-faq` (`limit="3"`) · 8. `wl-contact` + `wl-footer` + `wl-sticky-cta`.
+
+### Trang cho vòng sau (3–5 trang, dùng lại component)
+`index` (landing/trang chủ), `products`/khóa học, `about`/giảng viên, `blog`/cẩm nang nghề nghiệp, `contact`.
+
+---
+
+## 5. Bố cục "JIT" (linh động, dựng lúc chạy)
+
+Người dùng muốn bố cục **linh động**: không ghi cứng section trong HTML mà **JSON mô tả danh sách section**, `core.js` đọc rồi dựng, chỉ nạp component nào được dùng. (JIT = just-in-time: làm đến đâu cần đến đó, code luôn, chỉnh giao diện trực tiếp trên trình duyệt, không vẽ UI chi tiết trước.)
+
+> Lưu ý: slide 14 của BTC viết sẵn thẻ `<wl-*>` trong HTML. Đó vẫn là cách hợp lệ và đơn giản hơn. Cách JIT dưới đây là phương án nâng cao; có thể **bắt đầu bằng HTML tĩnh theo slide, chuyển sang JIT sau** nếu thiếu thời gian.
+
+### Schema JSON đề xuất (`data/brand-a.json`)
+
+```json
+{
+  "name": "CodeNest",
+  "slogan": "Học thực chiến, đi làm sớm",
+  "cta": "Đăng ký tư vấn",
+  "favicon": "assets/a/favicon.png",
+  "theme": { "colorPrimary": "#1D4ED8", "colorBg": "#FFFFFF", "fontHeading": "Inter" },
+  "menu": [
+    { "label": "Khóa học", "href": "products.html", "children": [{ "label": "Web Frontend", "href": "#" }] },
+    { "label": "Liên hệ", "href": "contact.html" }
+  ],
+  "pages": {
+    "home": [
+      { "type": "header" },
+      { "type": "hero", "variant": "split" },
+      { "type": "cards", "source": "programs", "title": "Chương trình học", "columns": 4 },
+      { "type": "features", "source": "features" },
+      { "type": "steps", "source": "steps" },
+      { "type": "faq", "limit": 3 },
+      { "type": "contact" },
+      { "type": "footer" }
+    ]
+  },
+  "hero": { "title": "...", "image": "..." },
+  "programs": [{ "name": "...", "desc": "...", "duration": "3 tháng", "price": "...", "image": "..." }],
+  "features": [{ "no": "01", "title": "...", "desc": "...", "image": "..." }],
+  "steps": [{ "title": "...", "desc": "...", "image": "..." }],
+  "stats": [{ "value": "5.000+", "label": "Học viên" }],
+  "testimonials": [{ "name": "...", "role": "...", "quote": "...", "avatar": "..." }],
+  "faq": [{ "q": "...", "a": "..." }],
+  "contact": { "email": "...", "phone": "...", "address": "..." },
+  "footer": { "columns": [{ "title": "...", "links": [] }], "social": [] }
+}
+```
+- `type` chọn component; `source` chọn khóa dữ liệu; `variant`, `columns`, `limit`... tùy chỉnh hiển thị.
+- Brand B muốn bỏ `steps` hoặc đổi thứ tự chỉ cần sửa mảng `pages.home`.
+
+### `core.js` (khung)
+
+```js
+const brand = new URLSearchParams(location.search).get('brand') || 'brand-a';
+const page  = document.body.dataset.page || 'home';
+const data  = await (await fetch(`data/${brand}.json`)).json();
+
+const root = document.documentElement.style;
+root.setProperty('--color-primary', data.theme.colorPrimary);
+root.setProperty('--color-bg', data.theme.colorBg);
+root.setProperty('--font-heading', `"${data.theme.fontHeading}"`);
+document.title = data.name;
+// TODO: đặt favicon từ data.favicon, nạp Google Font nếu cần
+
+const app = document.querySelector('#app');
+for (const sec of data.pages[page] ?? []) {
+  try {
+    await import(`./components/wl-${sec.type}.js`);   // chỉ nạp component được dùng
+    const el = document.createElement(`wl-${sec.type}`);
+    el.config = sec;                                   // cách hiển thị
+    el.data   = sec.source ? data[sec.source] : data;  // dữ liệu
+    app.append(el);
+  } catch (e) { console.warn('Không dựng được section', sec.type, e); }
+}
+```
+
+### Quy ước component
+- Mỗi component: file `js/components/wl-<tên>.js`, `class extends HTMLElement`, đăng ký bằng `customElements.define`.
+- Đọc `this.config` (tùy chọn hiển thị) và `this.data` (dữ liệu). **Không tự `fetch`.** Không ghi cứng chữ/nội dung trong code.
+- Dữ liệu rỗng thì không vẽ gì (không vỡ trang).
+- CSS chỉ dùng biến (`var(--color-primary)`...), **không ghi cứng mã màu, cỡ chữ**.
+- Lưới dùng `repeat(auto-fit, minmax(240px, 1fr))` để chịu được số thẻ thay đổi; cỡ chữ dùng `clamp()`.
+- Chữ dài/ngắn, thiếu ảnh, 3 hay 6 thẻ đều không được làm vỡ giao diện (thử với cả 3 brand).
+- Một section lỗi không được làm sập cả trang (try/catch trong `core.js`).
+- Responsive: desktop, tablet, mobile. Có alt cho ảnh, tương phản màu đủ đọc.
+
+### Cấu trúc thư mục
+
+```
+/index.html, products.html, contact.html ...
+/css/base.css              ← biến màu, font, spacing, bo góc
+/css/components.css
+/js/core.js                ← load JSON, áp theme, dựng section
+/js/app.js                 ← logic riêng từng trang
+/js/components/wl-*.js
+/data/brand-a.json, brand-b.json, brand-c.json
+/assets/a|b|c/             ← ảnh, logo theo từng brand
+```
+
+**Lưu ý kỹ thuật:** `fetch()` và `import()` không chạy khi mở file bằng `file://`. Dùng Live Server (VS Code) hoặc `npx serve` khi dev; deploy bằng GitHub Pages / Netlify / Vercel (miễn phí, không cần backend).
+
+Chọn cấu hình bằng URL `?brand=brand-b` và/hoặc nút chọn nhỏ trên trang để demo nhanh khi chấm.
+
+---
+
+## 6. Chia việc cho 3 người (theo quyền sở hữu file để tránh xung đột Git)
+
+Họp 1 giờ đầu để chốt "hợp đồng": 3 tên thương hiệu, tên component và thuộc tính, schema JSON, tạo repo (mỗi người một nhánh, chỉ sửa file của mình).
+
+- **Người 1 — Thiết kế & CSS**: Figma (hoặc Canva cho ảnh/banner): một bố cục desktop dùng chung + 3 bảng màu/font; bàn giao tokens sớm. Sau đó viết `base.css`, `wl-header`, `wl-hero`, `wl-feature`, `wl-footer`, responsive.
+- **Người 2 — Khung code & logic**: `index.html`, `core.js`, `app.js`, `wl-header` (menu thả xuống), `wl-faq` (accordion), `wl-contact` (validate phía client, hiển thị "gửi thành công", có thể `mailto:`/`localStorage`), `wl-sticky-cta`, nút chọn cấu hình, deploy.
+- **Người 3 — Dữ liệu & thẻ nội dung**: viết `brand-a/b/c.json` bằng tiếng Việt thật, chuẩn bị ảnh/logo, `wl-card`, `wl-person`, `wl-stats`, `wl-steps`, ghép trang, kiểm thử với cả 3 cấu hình.
+
+Trong lúc chờ Figma, hai người còn lại làm bản "xấu nhưng chạy được" với màu tạm; khi có tokens chỉ cập nhật `base.css` (nhờ dùng biến CSS).
+
+### Lịch gợi ý đến 11/10
+- 05/10 tối: họp chốt hợp đồng, tạo repo
+- 06/10: Figma + tokens xong; khung `core.js` chạy; `brand-a.json` có nội dung thật
+- 07–08/10: code từng section, chạy với brand A
+- 09/10: thêm brand B, C; sửa component hỏng khi đổi dữ liệu; mobile. Mốc: "đủ section chạy với 1 brand"
+- 10/10: kiểm thử, deploy, tập demo (đổi cấu hình, trả lời câu hỏi)
+- 11/10: chấm trực tiếp
+
+---
+
+## 7. Về skill AI trên GitHub (chỉ UI/UX, không backend)
+
+Skill là thư mục có `SKILL.md` hướng dẫn AI. Đã tìm thấy:
+- **frontend-design** (anthropics/skills, chính thức): chọn hướng thẩm mỹ rõ ràng cho landing page/prototype. `npx skills add https://github.com/anthropics/skills --skill frontend-design`
+- **theme-factory** (anthropics/skills): tạo theme màu/font nhất quán, hợp để tạo nhanh 3 bộ theme.
+- **ui-ux-design** (reeswell/skills), **ui-ux-designer** (rmyndharis/antigravity-skills), **agent-ui-ux-designer** (softaworks/agent-toolkit, đóng vai người phản biện UI/UX).
+- Tránh các bộ gộp cả backend/DevOps/database. Đọc `SKILL.md` trước khi cài; repo cộng đồng nhỏ chưa kiểm chứng chất lượng. Chưa kiểm chứng cách Antigravity nạp skill.
+- Skill chỉ lo thẩm mỹ, **không biết kiến trúc `wl-*` của đề** → file này (CLAUDE.md) chính là nơi cung cấp quy ước đó.
+
+---
+
+## 8. Hướng dẫn cho Claude Code khi làm việc trong repo này
+
+1. **Không thêm backend, framework nặng hay bước build** nếu không cần. Giữ HTML/CSS/JS thuần + web components.
+2. Tuân thủ kiến trúc ở mục 2 và quy ước component ở mục 5. Không ghi cứng nội dung/màu.
+3. Mỗi thay đổi nên kiểm tra với **cả 3 brand** (`?brand=brand-a|b|c`).
+4. Chỉ sửa file thuộc phạm vi được giao; không đổi schema JSON hay tên component khi chưa thống nhất với cả nhóm (đây là "hợp đồng" chung).
+5. Giải thích code ngắn gọn bằng tiếng Việt: người dùng là sinh viên và **phải hiểu code để trả lời giám khảo** khi chấm trực tiếp và để sửa theo góp ý ở vòng sau.
+6. Khi không chắc yêu cầu của BTC, nêu ra thay vì tự quyết (xem các câu hỏi ở mục 2).
+
+## 9. Việc tiếp theo đề xuất
+1. Tạo bộ khung: `index.html`, `css/base.css`, `js/core.js`, `data/brand-a.json`, và component mẫu `wl-cards.js`, `wl-header.js`, `wl-hero.js`.
+2. Điền `brand-a.json` bằng nội dung tiếng Việt thật cho chủ đề edu, rồi nhân bản thành brand B, C.
+3. Dựng lần lượt từng section theo thứ tự trên trang, chạy thử với dữ liệu thật trước khi làm đẹp.
