@@ -1,0 +1,387 @@
+{
+  "id": "brand-b",
+  "name": "CareerPath",
+  "tagline": "Khởi Đầu Sự Nghiệp Vững Vàng",
+  "slogan": "Nền tảng hướng nghiệp & huấn luyện kỹ năng việc làm hàng đầu",
+  "cta": "Đặt Lịch Tư Vấn 1-1",
+  "favicon": "https://img.icons8.com/color/96/briefcase.png",
+  "theme": {
+    "colorPrimary": "#0f9d8a",
+    "colorPrimaryHover": "#0d8776",
+    "colorPrimaryLight": "#e6f7f4",
+    "colorPrimarySubtle": "rgba(15, 157, 138, 0.08)",
+    "colorBg": "#f6fbfa",
+    "colorSurface": "#ffffff",
+    "fontHeading": "Plus Jakarta Sans"
+  },
+  "menu": [
+    {
+      "label": "Dịch vụ hướng nghiệp",
+      "href": "#programs",
+      "children": [
+        {
+          "label": "Thiết Kế CV & Portfolio ATS",
+          "desc": "Tối ưu hồ sơ ứng tuyển vượt qua vòng lọc tự động",
+          "href": "#programs"
+        },
+        {
+          "label": "Huấn Luyện Phỏng Vấn 1-1",
+          "desc": "Mock interview cùng Giám đốc Nhân sự & HR Manager",
+          "href": "#programs"
+        },
+        {
+          "label": "Định Hướng Ngành Nghề",
+          "desc": "Khám phá thế mạnh bản thân qua bài trắc nghiệm chuẩn quốc tế",
+          "href": "#programs"
+        },
+        {
+          "label": "Kỹ Năng Đàm Phán Lương",
+          "desc": "Bí quyết đạt mức đãi ngộ xứng đáng với năng lực",
+          "href": "#programs"
+        }
+      ]
+    },
+    {
+      "label": "Giải pháp",
+      "href": "#features"
+    },
+    {
+      "label": "Quy trình tư vấn",
+      "href": "#steps"
+    },
+    {
+      "label": "Học viên thành công",
+      "href": "#testimonials"
+    },
+    {
+      "label": "FAQ",
+      "href": "#faq"
+    },
+    {
+      "label": "Liên hệ",
+      "href": "#contact"
+    }
+  ],
+  "pages": {
+    "home": [
+      {
+        "type": "header"
+      },
+      {
+        "type": "hero",
+        "variant": "split"
+      },
+      {
+        "type": "stats",
+        "source": "stats"
+      },
+      {
+        "type": "features",
+        "source": "features",
+        "tag": "Lợi thế vượt trội",
+        "title": "Tại sao CareerPath là bệ phóng sự nghiệp của bạn?",
+        "subtitle": "Phương pháp tiếp cận cá nhân hóa giúp bạn định vị bản thân và chinh phục nhà tuyển dụng"
+      },
+      {
+        "type": "cards",
+        "source": "programs",
+        "tag": "Chương trình huấn luyện",
+        "title": "Giải pháp hướng nghiệp chuyên sâu cho sinh viên & người đi làm",
+        "subtitle": "Được xây dựng bởi đội ngũ chuyên gia nhân sự cấp cao từ các tập đoàn đa quốc gia"
+      },
+      {
+        "type": "testimonials",
+        "source": "testimonials",
+        "tag": "Trải nghiệm học viên",
+        "title": "Học viên chinh phục sự nghiệp cùng CareerPath",
+        "subtitle": "Hàng ngàn bạn trẻ đã tìm thấy đam mê và bước vào các tập đoàn mơ ước"
+      },
+      {
+        "type": "steps",
+        "source": "steps",
+        "tag": "3 Bước đồng hành",
+        "title": "Lộ trình dẫn lối tới công việc mơ ước",
+        "subtitle": "Chúng tôi đồng hành cùng bạn từ khi chưa biết chọn ngành gì đến lúc nhận lời mời làm việc"
+      },
+      {
+        "type": "faq",
+        "source": "faq",
+        "limit": 4,
+        "tag": "Giải đáp",
+        "title": "Câu hỏi thường gặp về hướng nghiệp",
+        "subtitle": "Tất cả những khúc mắc phổ biến về dịch vụ tư vấn và huấn luyện tại CareerPath"
+      },
+      {
+        "type": "contact",
+        "source": "contact",
+        "tag": "Đăng ký tư vấn",
+        "title": "Kết nối với Chuyên gia Hướng nghiệp",
+        "subtitle": "Khởi đầu sự nghiệp tự tin với buổi tư vấn định hướng 1-1 miễn phí"
+      },
+      {
+        "type": "footer"
+      },
+      {
+        "type": "sticky-cta"
+      }
+    ]
+  },
+  "hero": {
+    "badge": "Chương trình Đồng hành Mùa tuyển dụng 2026",
+    "badgeTag": "TƯ VẤN 1-1",
+    "title": "Định hình sự nghiệp, tự tin bước vào tập đoàn mơ ước",
+    "desc": "Tư vấn lộ trình cá nhân hóa, chuẩn hóa hồ sơ ATS và huấn luyện phỏng vấn 1-1 cùng chuyên gia.",
+    "ctaText": "Đặt lịch tư vấn hướng nghiệp",
+    "secondaryCtaText": "Trắc nghiệm tính cách nghề",
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    "floatingStat1": {
+      "title": "Tỷ lệ vượt lọc CV",
+      "desc": "95% vượt qua hệ thống ATS",
+      "icon": "★"
+    },
+    "floatingStat2": {
+      "title": "HR Coach 1-1",
+      "desc": "Cố vấn từ quản lý nhân sự",
+      "icon": "✦"
+    }
+  },
+  "programs": [
+    {
+      "id": "cv-portfolio",
+      "badge": "Khuyên dùng",
+      "title": "Tối Ưu CV Chuẩn ATS & Xây Dựng Portfolio",
+      "desc": "Thiết kế bộ hồ sơ xin việc chuyên nghiệp, từ khóa chuẩn ngành nghề, vượt qua hệ thống quét tự động của các tập đoàn lớn.",
+      "duration": "2 tuần (4 buổi 1-1)",
+      "level": "Mọi trình độ",
+      "price": "2.500.000 đ",
+      "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80",
+      "action": "Đăng ký sửa CV"
+    },
+    {
+      "id": "interview-coaching",
+      "badge": "Thực chiến cao",
+      "title": "Huấn Luyện Phỏng Vấn & Đàm Phán Lương",
+      "desc": "Thực hành phỏng vấn tình huống STAR, xử lý câu hỏi hóc búa từ ban lãnh đạo và kỹ năng deal lương tăng 20-40%.",
+      "duration": "3 tuần (6 buổi)",
+      "level": "Sinh viên tốt nghiệp / Đi làm",
+      "price": "3.800.000 đ",
+      "image": "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?auto=format&fit=crop&w=600&q=80",
+      "action": "Đăng ký huấn luyện"
+    },
+    {
+      "id": "career-orientation",
+      "badge": "Gói toàn diện",
+      "title": "Chương Trình Khai Phóng Tiềm Năng Nghề Nghiệp",
+      "desc": "Đánh giá toàn diện qua MBTI, Holland & CliftonStrengths kết hợp 5 phiên tham vấn chuyên sâu cùng chuyên gia định hướng nghề.",
+      "duration": "1 tháng (5 phiên)",
+      "level": "Học sinh / Sinh viên",
+      "price": "4.500.000 đ",
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
+      "action": "Khám phá bản thân"
+    },
+    {
+      "id": "executive-mentoring",
+      "badge": "Dành cho Senior",
+      "title": "Cố Vấn Lộ Trình Thăng Tiến Quản Lý",
+      "desc": "Chiến lược xây dựng thương hiệu cá nhân trên LinkedIn, mở rộng quan hệ ngành và bứt phá lên vị trí Trưởng nhóm / Quản lý.",
+      "duration": "2 tháng",
+      "level": "2+ năm kinh nghiệm",
+      "price": "6.900.000 đ",
+      "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
+      "action": "Tư vấn lộ trình"
+    }
+  ],
+  "features": [
+    {
+      "index": "01",
+      "title": "Mô hình Huấn luyện 1-1 độc quyền cùng HR Leader",
+      "desc": "Bạn không học một mình. Từng ứng viên được ghép đôi với một chuyên gia nhân sự đang công tác tại các tập đoàn thuộc đúng ngành nghề bạn muốn ứng tuyển.",
+      "highlights": [
+        "Chuyên gia am hiểu sâu sắc tiêu chí tuyển dụng nội bộ",
+        "Chỉ ra chính xác lỗ hổng trong phong thái và cách trả lời",
+        "Cam kết giữ kín thông tin ứng tuyển của ứng viên"
+      ],
+      "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "02",
+      "title": "Công nghệ phân tích từ khóa CV theo thuật toán ATS",
+      "desc": "Áp dụng công cụ kiểm tra độ tương thích CV với bản mô tả công việc (JD), giúp CV của bạn lọt top 5% hồ sơ xuất sắc nhất được nhà tuyển dụng liên hệ.",
+      "highlights": [
+        "Kiểm tra định dạng, font chữ và cấu trúc chuẩn quốc tế",
+        "Tối ưu hóa các con số định lượng thành tích ấn tượng",
+        "Tặng kèm 20+ mẫu CV được thiết kế riêng theo từng ngành"
+      ],
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "03",
+      "title": "Hệ thống kết nối cơ hội việc làm ẩn (Hidden Job Market)",
+      "desc": "70% cơ hội việc làm tốt không được đăng công khai trên các trang tuyển dụng. CareerPath kết nối bạn trực tiếp với mạng lưới đối tác tin cậy.",
+      "highlights": [
+        "Đề cử hồ sơ trực tiếp tới phòng nhân sự đối tác",
+        "Cập nhật việc làm độc quyền từ các doanh nghiệp liên kết",
+        "Hỗ trợ xuyên suốt đến khi ký hợp đồng chính thức"
+      ],
+      "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=700&q=80"
+    }
+  ],
+  "steps": [
+    {
+      "step": "Bước 1",
+      "title": "Khảo sát hồ sơ & Đặt mục tiêu",
+      "desc": "Điền bảng khảo sát năng lực và có buổi trò chuyện 30 phút để xác định rõ mong muốn, ngành nghề mục tiêu và mức thu nhập kỳ vọng.",
+      "image": "https://placehold.co/600x800/png"
+    },
+    {
+      "step": "Bước 2",
+      "title": "Chuẩn hóa hồ sơ & Luyện tập thực tế",
+      "desc": "Hoàn thiện CV xuất sắc, xây dựng profile LinkedIn chuyên nghiệp và trải qua 2 vòng phỏng vấn thử nghiệm sát sao.",
+      "image": "https://placehold.co/600x800/png"
+    },
+    {
+      "step": "Bước 3",
+      "title": "Ứng tuyển chiến lược & Đàm phán đãi ngộ",
+      "desc": "Nộp hồ sơ có chọn lọc, nhận hướng dẫn đối thoại với nhà tuyển dụng và chốt hợp đồng lao động với mức lương tối ưu.",
+      "image": "https://placehold.co/600x800/png"
+    }
+  ],
+  "stats": [
+    {
+      "value": "95.6%",
+      "label": "Ứng viên nhận được offer sau 45 ngày"
+    },
+    {
+      "value": "12.000+",
+      "label": "Hồ sơ CV & Portfolio được nâng cấp"
+    },
+    {
+      "value": "+35%",
+      "label": "Mức lương tăng trung bình sau đàm phán"
+    },
+    {
+      "value": "80+",
+      "label": "Chuyên gia HR từ tập đoàn đa quốc gia"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Đặng Mai Anh",
+      "role": "Management Trainee tại Unilever",
+      "quote": "Mình từng trượt vòng CV nhiều lần do không biết cách lượng hóa kết quả. Nhờ chị Mentor tại CareerPath hướng dẫn cấu trúc STAR, CV của mình đã vượt qua mọi vòng thẩm định gắt gao.",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Vũ Đức Huy",
+      "role": "Business Analyst tại Techcombank",
+      "quote": "Buổi mock interview với anh HR Director đã cứu mình khỏi những câu hỏi tình huống cực kỳ khó. Phong thái trả lời tự tin đã giúp mình ghi điểm tuyệt đối trong mắt hội đồng phỏng vấn.",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Phạm Lan Phương",
+      "role": "HR Generalist tại Shopee",
+      "quote": "CareerPath không chỉ hướng dẫn tìm việc mà còn giúp mình định hình rõ lộ trình 3 năm tới. Đây là khoản đầu tư thông minh nhất cho bản thân khi vừa ra trường.",
+      "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=150&q=80"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Tôi là sinh viên năm nhất/năm hai thì có nên tham gia hướng nghiệp?",
+      "a": "Càng sớm càng có lợi thế! Chuẩn bị từ năm 1-2 giúp bạn chủ động tích lũy kỹ năng, chọn đúng hoạt động ngoại khóa và dự án thực tế để làm đẹp hồ sơ trước kỳ tuyển dụng."
+    },
+    {
+      "q": "Các buổi cố vấn 1-1 diễn ra theo hình thức nào?",
+      "a": "Toàn bộ phiên tư vấn diễn ra online qua Google Meet hoặc Zoom có ghi âm lại, giúp bạn dễ dàng theo dõi từ bất cứ đâu và xem lại những lời khuyên hữu ích."
+    },
+    {
+      "q": "Chuyên gia hướng nghiệp của CareerPath là ai?",
+      "a": "100% chuyên gia là Trưởng phòng Nhân sự, Giám đốc Tuyển dụng hoặc Quản lý cấp cao có ít nhất 7 năm kinh nghiệm tại các tập đoàn Top Fortune 500 và doanh nghiệp dẫn đầu tại Việt Nam."
+    },
+    {
+      "q": "Nếu tôi vẫn chưa tìm được việc làm sau khóa học thì sao?",
+      "a": "CareerPath duy trì chính sách hỗ trợ bổ sung 1 buổi phỏng vấn giả lập và tiếp tục gửi cơ hội việc làm từ mạng lưới đối tác cho đến khi bạn nhận được offer."
+    }
+  ],
+  "contact": {
+    "title": "Liên hệ CareerPath",
+    "desc": "Hãy để lại thông tin để chuyên viên hướng nghiệp hỗ trợ kiểm tra CV miễn phí và tư vấn gói huấn luyện phù hợp nhất cho bạn.",
+    "phone": "028 7777 9999",
+    "email": "tuvancareer@careerpath.edu.vn",
+    "address": "Tầng 8, Tòa nhà Vincom Center, Quận 1, TP. Hồ Chí Minh",
+    "programs": [
+      "Tối Ưu CV Chuẩn ATS",
+      "Huấn Luyện Phỏng Vấn & Đàm Phán Lương",
+      "Định Hướng Ngành Nghề",
+      "Cố Vấn Thăng Tiến Quản Lý"
+    ]
+  },
+  "footer": {
+    "about": "CareerPath là tổ chức giáo dục hướng nghiệp tiên phong, chắp cánh cho thế hệ trẻ tự tin làm chủ tương lai nghề nghiệp và hội nhập toàn cầu.",
+    "copyright": "© 2026 CareerPath Vietnam. Đồ án dự thi Thiết kế Web.",
+    "columns": [
+      {
+        "title": "Dịch vụ hướng nghiệp",
+        "links": [
+          {
+            "label": "Chỉnh sửa CV ATS",
+            "href": "#programs"
+          },
+          {
+            "label": "Luyện phỏng vấn 1-1",
+            "href": "#programs"
+          },
+          {
+            "label": "Trắc nghiệm nghề nghiệp",
+            "href": "#programs"
+          },
+          {
+            "label": "Chiến lược đàm phán lương",
+            "href": "#programs"
+          }
+        ]
+      },
+      {
+        "title": "Về CareerPath",
+        "links": [
+          {
+            "label": "Giới thiệu chung",
+            "href": "#features"
+          },
+          {
+            "label": "Đội ngũ Chuyên gia HR",
+            "href": "#"
+          },
+          {
+            "label": "Đối tác doanh nghiệp",
+            "href": "#"
+          },
+          {
+            "label": "Báo cáo thị trường việc làm",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Tài nguyên học tập",
+        "links": [
+          {
+            "label": "Thư viện mẫu CV đẹp",
+            "href": "#"
+          },
+          {
+            "label": "Bộ câu hỏi phỏng vấn STAR",
+            "href": "#"
+          },
+          {
+            "label": "Cẩm nang hướng nghiệp Gen Z",
+            "href": "#"
+          },
+          {
+            "label": "Blog & Podcast nghề nghiệp",
+            "href": "#"
+          }
+        ]
+      }
+    ]
+  }
+}
