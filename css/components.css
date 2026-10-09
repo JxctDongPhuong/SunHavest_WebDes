@@ -8,22 +8,36 @@ wl-header {
 }
 
 .site-header {
-    background-color: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    background-color: #ffffff;
+    border-bottom: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
+/* Shadow + backdrop blur khi scroll */
 .site-header.is-scrolled {
-    box-shadow: var(--shadow-md, 0 4px 20px rgba(0, 0, 0, 0.08));
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: #e5e7eb;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
 }
 
+/* Container riêng của Header: rộng rãi, padding 2 bên thoáng chuẩn Prep.vn */
+.header-container,
+.site-header .container {
+    width: 100%;
+    max-width: var(--container-max, 1440px);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+/* Header layout: Grid 3 cột (Logo trái - Nav giữa - CTA phải) */
 .header-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     height: 76px;
+    gap: 16px;
 }
 
 /* 1.1 Logo */
@@ -32,10 +46,12 @@ wl-header {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: var(--color-text-main, #1e293b);
+    color: #1f2937;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: var(--font-heading, sans-serif);
+    justify-self: start;
+    white-space: nowrap;
 }
 
 .brand-logo-img {
@@ -44,8 +60,9 @@ wl-header {
     object-fit: contain;
 }
 
-/* 1.2 Desktop Navigation */
+/* 1.3 Nav — Căn giữa hoàn hảo bằng Grid, tự động co giãn và không đè lên Logo hay CTA */
 .desktop-nav {
+    justify-self: center;
     display: flex;
     align-items: center;
 }
@@ -53,10 +70,15 @@ wl-header {
 .nav-list {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 2px;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 6px 8px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 9999px;
+    /* pill shape */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .nav-item {
@@ -68,15 +90,29 @@ wl-header {
     align-items: center;
     gap: 4px;
     text-decoration: none;
-    color: var(--color-text-muted, #64748b);
+    color: #4b5563;
     font-weight: 500;
-    font-size: 0.95rem;
-    padding: 8px 0;
-    transition: color 0.2s ease;
+    font-size: 0.92rem;
+    padding: 7px 14px;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
     color: var(--color-primary, #0f9d8a);
+    background-color: var(--color-primary-light, #e6f7f4);
+}
+
+/* Mũi tên dropdown xoay khi hover */
+.arrow-icon {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+}
+
+.nav-item.has-dropdown:hover .arrow-icon {
+    transform: rotate(180deg);
 }
 
 /* 1.3 Dropdown Menu */
@@ -128,14 +164,39 @@ wl-header {
     margin: 2px 0 0 0;
 }
 
-/* 1.4 Actions & Hamburger Button */
+/* 1.5 Actions & CTA */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-self: end;
+    gap: 12px;
 }
 
-.header-cta-btn,
+/* CTA button: gradient pill nổi bật góc phải */
+.header-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary, #0f9d8a) 0%, #0bc5a8 100%);
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(15, 157, 138, 0.3);
+}
+
+.header-cta-btn:hover {
+    transform: scale(1.04) translateY(-1px);
+    box-shadow: 0 8px 22px rgba(15, 157, 138, 0.42);
+}
+
+/* btn-primary vẫn giữ nguyên style cho các nơi khác */
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -152,7 +213,6 @@ wl-header {
     transition: all 0.2s ease;
 }
 
-.header-cta-btn:hover,
 .btn-primary:hover {
     background-color: var(--color-primary-hover, #0d8776);
     transform: translateY(-1px);
@@ -172,13 +232,14 @@ wl-header {
 
 .hamburger-btn span {
     display: block;
-    height: 2.5px;
+    height: 2px;
     width: 100%;
-    background-color: var(--color-text-main, #1e293b);
+    background-color: #1f2937;
     border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
-/* 1.5 Mobile Drawer */
+/* 1.6 Mobile Drawer */
 .drawer-backdrop {
     position: fixed;
     inset: 0;
@@ -285,38 +346,44 @@ wl-hero {
 .hero-badge-wrap {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 14px 6px 6px;
+    gap: 7px;
+    padding: 4px 12px 4px 4px;
     background-color: var(--color-primary-light, #e6f7f4);
     border: 1px solid color-mix(in srgb, var(--color-primary, #0f9d8a) 18%, transparent);
     border-radius: 99px;
     margin-bottom: 20px;
     width: fit-content;
+    max-width: 100%;
 }
 
 .hero-badge-tag {
     background-color: var(--color-primary, #0f9d8a);
     color: #ffffff;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 800;
-    padding: 3px 9px;
+    padding: 3px 8px;
     border-radius: 99px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .hero-badge-text {
     color: var(--color-primary-hover, #0d8776);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
+    line-height: 1.35;
 }
 
 /* Tiêu đề H1 */
 .hero-title {
-    font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+    font-size: clamp(1.85rem, 4vw, 3.4rem);
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
     margin: 0 0 20px 0;
     font-family: var(--font-heading, sans-serif);
+    text-wrap: balance;
 }
 
 .title-dark {
@@ -824,7 +891,25 @@ wl-hero {
 }
 
 /* RESPONSIVE - HEADER & HERO */
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
+    /* Thu gọn nhẹ padding và font chữ của nav trên laptop */
+    .nav-link {
+        padding: 6px 11px;
+        font-size: 0.88rem;
+    }
+
+    .header-cta-btn {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    /* Header chuyển sang chế độ Mobile Hamburger */
+    .header-inner {
+        display: flex;
+        justify-content: space-between;
+    }
 
     .desktop-nav,
     .header-cta-btn {
@@ -834,36 +919,81 @@ wl-hero {
     .hamburger-btn {
         display: flex;
     }
+}
 
+/* RESPONSIVE - HERO (Chỉ chuyển sang 1 cột khi dưới 960px trên máy tính bảng) */
+@media (max-width: 1200px) and (min-width: 961px) {
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .floating-card-top {
+        top: -10px;
+        left: -10px;
+        width: 260px;
+    }
+
+    .floating-card-bottom {
+        bottom: -10px;
+        right: -10px;
+        width: 260px;
+    }
+}
+
+@media (max-width: 960px) {
     .hero-grid {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 40px;
     }
 
     .hero-image-wrap {
         height: 320px;
     }
 
-    .floating-card-top {
-        top: -16px;
-        left: 0;
-        width: 250px;
-    }
-
-    .floating-card-bottom {
-        bottom: -16px;
-        right: 0;
-        width: 260px;
+    .floating-stat-card {
+        position: static;
+        width: 100%;
+        margin-top: 14px;
+        animation: none;
     }
 
     .hero-check-list {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
     }
 }
 
 @media (max-width: 640px) {
+    .hero-badge-wrap {
+        border-radius: 12px;
+        padding: 4px 10px 4px 4px;
+        gap: 6px;
+        align-items: flex-start;
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .hero-badge-tag {
+        font-size: 0.64rem;
+        padding: 2px 7px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+
+    .hero-badge-text {
+        font-size: 0.74rem;
+        line-height: 1.35;
+    }
+
+    .hero-title {
+        font-size: clamp(1.65rem, 6.8vw, 2.15rem);
+        line-height: 1.25;
+        margin-bottom: 16px;
+    }
+
     .hero-image-wrap {
         height: 250px;
     }
@@ -905,7 +1035,7 @@ wl-footer {
     background-color: #0b1320;
     /* Tone Dark Slate sang trọng */
     color: #94a3b8;
-    padding: 70px 0 28px;
+    padding: 70px 0 96px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1018,10 +1148,68 @@ wl-footer {
     transform: translateX(4px);
 }
 
+/* Thanh Hệ sinh thái đối tác / Brand Links */
+.footer-brands-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 0;
+    margin-bottom: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.footer-brands-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.footer-brands-list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 99px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+    font-size: 0.84rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.footer-brand-pill:hover {
+    background-color: color-mix(in srgb, var(--color-primary, #0f9d8a) 15%, transparent);
+    border-color: var(--color-primary, #0f9d8a);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.footer-brand-pill .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary, #0f9d8a);
+    opacity: 0.8;
+}
+
 /* Hàng Đáy Footer (Copyright, Chính sách & Lên đầu trang) */
 .footer-bottom {
-    padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0;
+    border-top: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1072,6 +1260,13 @@ wl-footer {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+
+    .footer-brands-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 0;
     }
 
     .footer-bottom {

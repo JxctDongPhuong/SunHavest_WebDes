@@ -1,42 +1,42 @@
 // init 
 class WlHeader extends HTMLElement {
-    // getter and setter
-    set config(val) {
-        this._config = val;
-        this.render();
-    }
-    get config() { return this._config }
+  // getter and setter
+  set config(val) {
+    this._config = val;
+    this.render();
+  }
+  get config() { return this._config }
 
-    set data(val) {
-        this._data = val;
-        this.render();
-    }
-    get data() { return this._data }
+  set data(val) {
+    this._data = val;
+    this.render();
+  }
+  get data() { return this._data }
 
-    connectedCallback() {
-        this.classList.add("")
-    }
+  connectedCallback() {
+    this.classList.add("")
+  }
 
-    render() {
-        if (!this._data) return;
-        const brandName = this._data.name || "CareerPath";
-        const logoUrl = this._data.favicon ||
-            this._data.logoUrl || "";
-        const ctaText = this._data.cta || "Đặt Lịch Tư Vấn";
-        const menuItems = this._data.menu || [];
+  render() {
+    if (!this._data) return;
+    const brandName = this._data.name || "CareerPath";
+    const logoUrl = this._data.favicon ||
+      this._data.logoUrl || "";
+    const ctaText = this._data.cta || "Đặt Lịch Tư Vấn";
+    const menuItems = this._data.menu || [];
 
-        // traverse an array to create HTML
-        const menuHtml = menuItems.map(item => {
-            // Tính năng 2: Nếu có menu con -> tạo Dropdown
-            if (item.children && item.children.length > 0) {
-                const subMenuHtml = item.children.map(child => `
+    // traverse an array to create HTML
+    const menuHtml = menuItems.map(item => {
+      // Tính năng 2: Nếu có menu con -> tạo Dropdown
+      if (item.children && item.children.length > 0) {
+        const subMenuHtml = item.children.map(child => `
           <a href="${child.href || '#'}" class="dropdown-item">
             <strong class="dropdown-title">${child.label}</strong>
             ${child.desc ? `<p class="dropdown-desc">${child.desc}</p>` : ''}
           </a>
         `).join('');
 
-                return `
+        return `
           <li class="nav-item has-dropdown">
             <a href="${item.href || '#'}" class="nav-link dropdown-toggle">
               ${item.label}
@@ -47,18 +47,18 @@ class WlHeader extends HTMLElement {
             </div>
           </li>
         `;
-            }
-            // Tính năng 1: Menu con không có -> tạo Link thường
-            return `
+      }
+      // Tính năng 1: Menu con không có -> tạo Link thường
+      return `
         <li class="nav-item">
           <a href="${item.href || '#'}" class="nav-link">${item.label}</a>
         </li>
       `;
-        }).join('');
+    }).join('');
 
-        this.innerHTML = `
+    this.innerHTML = `
       <header class="site-header" id="site-header">
-        <div class="container">
+        <div class="header-container">
           <div class="header-inner">
             <!-- Logo & Brand Name -->
             <a href="#" class="brand-logo">
@@ -100,41 +100,65 @@ class WlHeader extends HTMLElement {
       </header>
     `;
 
-        this.setupEvents();
+    this.setupEvents();
+  }
+
+  setupEvents() {
+    const hamburgerBtn = this.querySelector('#hamburger-btn');
+    const closeBtn = this.querySelector('#drawer-close-btn');
+    const backdrop = this.querySelector('#drawer-backdrop');
+    const drawer = this.querySelector('#mobile-drawer');
+
+    // Mở drawer khi click nút hamburger
+    if (hamburgerBtn && drawer && backdrop) {
+      hamburgerBtn.addEventListener('click', () => {
+        drawer.classList.add('active');
+        backdrop.classList.add('active');
+      });
     }
 
-    setupEvents() {
-        // ... setup mobile drawer, CTA toggle ...
-
-        // 🟢 Tính năng 4: Xử lý click ra ngoài để đóng dropdown
-        document.addEventListener('click', (event) => {
-            const activeDropdown = this.querySelector('.dropdown-menu.show');
-
-            if (activeDropdown) {
-                const toggle = activeDropdown.previousElementSibling;
-
-                // Kiểm tra nếu click không phải vào toggle hoặc menu
-                if (!toggle.contains(event.target) && !activeDropdown.contains(event.target)) {
-                    toggle.classList.remove('active');
-                    activeDropdown.classList.remove('show');
-                }
-            }
-        });
-
-        // 🟢 Tính năng 5: Xử lý link trong mobile drawer
-        this.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                this.closeMobileDrawer();
-            });
-        });
+    // Đóng drawer khi click nút X
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        this.closeMobileDrawer();
+      });
     }
 
-    closeMobileDrawer() {
-        const drawer = this.querySelector('.mobile-drawer');
-        const backdrop = this.querySelector('.drawer-backdrop');
-        drawer.classList.remove('active');
-        backdrop.classList.remove('active');
+    // Đóng drawer khi click ra ngoài backdrop
+    if (backdrop) {
+      backdrop.addEventListener('click', () => {
+        this.closeMobileDrawer();
+      });
     }
+
+    // Đóng drawer khi click vào bất kỳ link nào
+    this.querySelectorAll('.mobile-drawer a').forEach(link => {
+      link.addEventListener('click', () => {
+        this.closeMobileDrawer();
+      });
+    });
+
+    // Đóng dropdown khi click ra ngoài
+    document.addEventListener('click', (event) => {
+      const activeDropdown = this.querySelector('.dropdown-menu.show');
+
+      if (activeDropdown) {
+        const toggle = activeDropdown.previousElementSibling;
+
+        if (!toggle.contains(event.target) && !activeDropdown.contains(event.target)) {
+          toggle.classList.remove('active');
+          activeDropdown.classList.remove('show');
+        }
+      }
+    });
+  }
+
+  closeMobileDrawer() {
+    const drawer = this.querySelector('.mobile-drawer');
+    const backdrop = this.querySelector('#drawer-backdrop');
+    if (drawer) drawer.classList.remove('active');
+    if (backdrop) backdrop.classList.remove('active');
+  }
 }
 
 // Đăng ký thẻ <wl-header> với trình duyệt

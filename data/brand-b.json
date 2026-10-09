@@ -3,7 +3,7 @@
   "name": "CareerPath",
   "tagline": "Khởi Đầu Sự Nghiệp Vững Vàng",
   "slogan": "Nền tảng hướng nghiệp & huấn luyện kỹ năng việc làm hàng đầu",
-  "cta": "Đặt Lịch Tư Vấn 1-1",
+  "cta": "Đặt Lịch Tư Vấn",
   "favicon": "https://img.icons8.com/color/96/briefcase.png",
   "theme": {
     "colorPrimary": "#0f9d8a",
@@ -128,21 +128,43 @@
   },
   "hero": {
     "badge": "Chương trình Đồng hành Mùa tuyển dụng 2026",
-    "badgeTag": "TƯ VẤN 1-1",
+    "badgeTag": "TƯ VẤN",
     "title": "Định hình sự nghiệp, tự tin bước vào tập đoàn mơ ước",
     "desc": "Tư vấn lộ trình cá nhân hóa, chuẩn hóa hồ sơ ATS và huấn luyện phỏng vấn 1-1 cùng chuyên gia.",
     "ctaText": "Đặt lịch tư vấn hướng nghiệp",
     "secondaryCtaText": "Trắc nghiệm tính cách nghề",
     "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    "checklist": [
+      "Lộ trình cá nhân hóa",
+      "Học thực chiến & cố vấn 1-1"
+    ],
+    "windowTitle": "Lớp Học & Tư Vấn 1-1 Trực Tuyến",
+    "windowBadge": "Đang mở đăng ký",
+    "mentor": {
+      "avatar": "🎯",
+      "name": "Cố Vấn Chuyên Gia 1-1",
+      "role": "Tối ưu hồ sơ & Mô phỏng phỏng vấn",
+      "rating": "4.9/5 (1.200+ đánh giá)"
+    },
+    "partners": [
+      "NovaTech",
+      "ApexCorp",
+      "SkyGlobal",
+      "NexusLab"
+    ],
     "floatingStat1": {
-      "title": "Tỷ lệ vượt lọc CV",
-      "desc": "95% vượt qua hệ thống ATS",
-      "icon": "★"
+      "title": "Tỷ Lệ Vượt Lọc",
+      "desc": "Vượt qua hệ thống lọc tự động",
+      "icon": "★",
+      "badge": "✓ 95.6%",
+      "footer": "Tối ưu từ khóa & chuẩn ATS"
     },
     "floatingStat2": {
       "title": "HR Coach 1-1",
-      "desc": "Cố vấn từ quản lý nhân sự",
-      "icon": "✦"
+      "desc": "Cố vấn từ Giám đốc Nhân sự",
+      "icon": "✦",
+      "badge": "✓ Xác minh",
+      "footer": "Đồng hành tới khi nhận Offer"
     }
   },
   "programs": [
@@ -315,6 +337,32 @@
   "footer": {
     "about": "CareerPath là tổ chức giáo dục hướng nghiệp tiên phong, chắp cánh cho thế hệ trẻ tự tin làm chủ tương lai nghề nghiệp và hội nhập toàn cầu.",
     "copyright": "© 2026 CareerPath Vietnam. Đồ án dự thi Thiết kế Web.",
+    "brandLinks": [
+      {
+        "name": "ABC EdTech",
+        "href": "#"
+      },
+      {
+        "name": "Brand Alpha",
+        "href": "#"
+      },
+      {
+        "name": "XYZ Global",
+        "href": "#"
+      },
+      {
+        "name": "Nova Career",
+        "href": "#"
+      },
+      {
+        "name": "Apex Skills",
+        "href": "#"
+      },
+      {
+        "name": "Omni Hub",
+        "href": "#"
+      }
+    ],
     "columns": [
       {
         "title": "Dịch vụ hướng nghiệp",

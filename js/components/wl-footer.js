@@ -20,14 +20,19 @@ class WlFooter extends HTMLElement {
     render() {
         if (!this._data) return;
 
-        // 1. Trích xuất dữ liệu an toàn (Fallback nếu thiếu)
-        const brand = this._data;
-        const footer = brand.footer || {};
-        const name = brand.name || 'CareerPath';
-        const tagline = brand.tagline || '';
-        const about = footer.about || 'Nền tảng giáo dục & hướng nghiệp hàng đầu.';
-        const copyright = footer.copyright || `© ${new Date().getFullYear()} ${name}. All rights reserved.`;
-        const columns = footer.columns || [];
+        // 1. Trích xuất dữ liệu an toàn (Hỗ trợ cả trường hợp nhận data.footer hoặc root data)
+        const rootData = window.appState?.data || {};
+        const footerData = (this._data.columns || this._data.about || this._data.brandLinks)
+            ? this._data
+            : (this._data.footer || rootData.footer || {});
+
+        const name = rootData.name || this._data.name || 'CareerPath';
+        const favicon = rootData.favicon || rootData.logoUrl || this._data.favicon || this._data.logoUrl || '';
+        const tagline = rootData.tagline || this._data.tagline || '';
+        const about = footerData.about || '';
+        const copyright = footerData.copyright || `© ${new Date().getFullYear()} ${name}. All rights reserved.`;
+        const columns = footerData.columns || [];
+        const brandLinks = footerData.brandLinks || [];
 
         // 2. Render các cột liên kết động
         const columnsHtml = columns.map(col => `
@@ -53,11 +58,11 @@ class WlFooter extends HTMLElement {
             <!-- Cột 1: Thông tin thương hiệu & Giới thiệu -->
             <div class="footer-brand-col">
               <a href="#" class="footer-logo">
-                <span class="logo-mark">💼</span>
+                ${favicon ? `<img src="${favicon}" alt="${name}" class="footer-logo-img" style="width: 28px; height: 28px; object-fit: contain;">` : ''}
                 <span class="logo-text">${name}</span>
               </a>
               ${tagline ? `<p class="footer-tagline">${tagline}</p>` : ''}
-              <p class="footer-about">${about}</p>
+              ${about ? `<p class="footer-about">${about}</p>` : ''}
               
               <!-- Mạng xã hội -->
               <div class="footer-socials">
@@ -77,6 +82,21 @@ class WlFooter extends HTMLElement {
             ${columnsHtml}
 
           </div>
+
+          <!-- Thanh thương hiệu liên kết / Hệ sinh thái đối tác -->
+          ${brandLinks.length > 0 ? `
+            <div class="footer-brands-bar">
+              <span class="footer-brands-label">Hệ sinh thái liên kết:</span>
+              <div class="footer-brands-list">
+                ${brandLinks.map(b => `
+                  <a href="${b.href || '#'}" class="footer-brand-pill">
+                    <span class="pill-dot"></span>
+                    <span>${b.name}</span>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
 
           <!-- Phần dưới: Divider, Copyright & Back to Top -->
           <div class="footer-bottom">

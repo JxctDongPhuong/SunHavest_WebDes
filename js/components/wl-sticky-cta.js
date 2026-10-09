@@ -30,7 +30,7 @@ class WlStickyCta extends HTMLElement {
                     <div class="sticky-cta-left">
                         <span class="sticky-cta-pulse"></span>
                         <p class="sticky-cta-text">
-                            <strong>Còn 3 suất tư vấn miễn phí hôm nay!</strong>
+                            <strong>${brand.stickyText || brand.slogan || 'Đăng ký nhận ưu đãi'}</strong>
                             ${tagline ? `<span>${tagline}</span>` : ''}
                         </p>
                     </div>

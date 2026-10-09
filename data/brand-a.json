@@ -19,31 +19,111 @@
       "label": "Khóa học",
       "href": "#programs",
       "children": [
-        { "label": "Frontend Chuyên Sâu", "desc": "HTML, CSS, Modern JS, React & Next.js", "href": "#programs" },
-        { "label": "Backend & Cloud", "desc": "Node.js, PostgreSQL, Docker & Microservices", "href": "#programs" },
-        { "label": "Fullstack Master", "desc": "Từ zero đến Senior Junior Developer", "href": "#programs" },
-        { "label": "Luyện Phỏng Vấn Tech", "desc": "Data Structures, Algorithm & System Design", "href": "#programs" }
+        {
+          "label": "Frontend Chuyên Sâu",
+          "desc": "HTML, CSS, Modern JS, React & Next.js",
+          "href": "#programs"
+        },
+        {
+          "label": "Backend & Cloud",
+          "desc": "Node.js, PostgreSQL, Docker & Microservices",
+          "href": "#programs"
+        },
+        {
+          "label": "Fullstack Master",
+          "desc": "Từ zero đến Senior Junior Developer",
+          "href": "#programs"
+        },
+        {
+          "label": "Luyện Phỏng Vấn Tech",
+          "desc": "Data Structures, Algorithm & System Design",
+          "href": "#programs"
+        }
       ]
     },
-    { "label": "Phương pháp", "href": "#features" },
-    { "label": "Lộ trình 3 bước", "href": "#steps" },
-    { "label": "Kết quả học viên", "href": "#testimonials" },
-    { "label": "Hỏi đáp", "href": "#faq" },
-    { "label": "Liên hệ", "href": "#contact" }
+    {
+      "label": "Phương pháp",
+      "href": "#features"
+    },
+    {
+      "label": "Lộ trình 3 bước",
+      "href": "#steps"
+    },
+    {
+      "label": "Kết quả học viên",
+      "href": "#testimonials"
+    },
+    {
+      "label": "Hỏi đáp",
+      "href": "#faq"
+    },
+    {
+      "label": "Liên hệ",
+      "href": "#contact"
+    }
   ],
   "pages": {
     "home": [
-      { "type": "header" },
-      { "type": "hero", "variant": "split" },
-      { "type": "cards", "source": "programs", "tag": "Chương trình tiêu biểu", "title": "Khóa học lập trình chuẩn doanh nghiệp", "subtitle": "Giáo trình cập nhật liên tục theo nhu cầu tuyển dụng thực tế của các tập đoàn công nghệ" },
-      { "type": "features", "source": "features", "tag": "Phương pháp độc quyền", "title": "Tại sao CodeNest giúp bạn đi làm sớm hơn?", "subtitle": "Mô phỏng 100% quy trình làm việc Agile/Scrum của các công ty công nghệ hàng đầu" },
-      { "type": "steps", "source": "steps", "tag": "Lộ trình 3 bước", "title": "Hành trình bứt phá từ con số 0", "subtitle": "Quy trình học tập khoa học giúp bạn vững nền tảng, thạo kỹ năng và tự tin nhận offer" },
-      { "type": "stats", "source": "stats" },
-      { "type": "testimonials", "source": "testimonials", "tag": "Câu chuyện thành công", "title": "Học viên CodeNest nói gì?", "subtitle": "Hơn 5.000 học viên đã chuyển ngành và thăng tiến sự nghiệp thành công cùng chúng tôi" },
-      { "type": "faq", "source": "faq", "limit": 4, "tag": "Giải đáp thắc mắc", "title": "Câu hỏi thường gặp", "subtitle": "Mọi điều bạn cần biết trước khi bắt đầu hành trình lập trình tại CodeNest" },
-      { "type": "contact", "source": "contact", "tag": "Tư vấn miễn phí", "title": "Đăng ký nhận lộ trình học cá nhân hóa", "subtitle": "Chuyên gia học tập sẽ liên hệ tư vấn chi tiết trong vòng 15 phút" },
-      { "type": "footer" },
-      { "type": "sticky-cta" }
+      {
+        "type": "header"
+      },
+      {
+        "type": "hero",
+        "variant": "split"
+      },
+      {
+        "type": "cards",
+        "source": "programs",
+        "tag": "Chương trình tiêu biểu",
+        "title": "Khóa học lập trình chuẩn doanh nghiệp",
+        "subtitle": "Giáo trình cập nhật liên tục theo nhu cầu tuyển dụng thực tế của các tập đoàn công nghệ"
+      },
+      {
+        "type": "features",
+        "source": "features",
+        "tag": "Phương pháp độc quyền",
+        "title": "Tại sao CodeNest giúp bạn đi làm sớm hơn?",
+        "subtitle": "Mô phỏng 100% quy trình làm việc Agile/Scrum của các công ty công nghệ hàng đầu"
+      },
+      {
+        "type": "steps",
+        "source": "steps",
+        "tag": "Lộ trình 3 bước",
+        "title": "Hành trình bứt phá từ con số 0",
+        "subtitle": "Quy trình học tập khoa học giúp bạn vững nền tảng, thạo kỹ năng và tự tin nhận offer"
+      },
+      {
+        "type": "stats",
+        "source": "stats"
+      },
+      {
+        "type": "testimonials",
+        "source": "testimonials",
+        "tag": "Câu chuyện thành công",
+        "title": "Học viên CodeNest nói gì?",
+        "subtitle": "Hơn 5.000 học viên đã chuyển ngành và thăng tiến sự nghiệp thành công cùng chúng tôi"
+      },
+      {
+        "type": "faq",
+        "source": "faq",
+        "limit": 4,
+        "tag": "Giải đáp thắc mắc",
+        "title": "Câu hỏi thường gặp",
+        "subtitle": "Mọi điều bạn cần biết trước khi bắt đầu hành trình lập trình tại CodeNest"
+      },
+      {
+        "type": "contact",
+        "source": "contact",
+        "tag": "Tư vấn miễn phí",
+        "title": "Đăng ký nhận lộ trình học cá nhân hóa",
+        "subtitle": "Chuyên gia học tập sẽ liên hệ tư vấn chi tiết trong vòng 15 phút"
+      },
+      {
+        "type": "footer"
+      },
+      {
+        "type": "sticky-cta"
+      }
     ]
   },
   "hero": {
@@ -55,8 +135,16 @@
     "secondaryCtaText": "Xem bài test năng lực",
     "trustText": "Hơn 5.200+ học viên đã có việc làm tại FPT, Viettel, VNG, VNPT",
     "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
-    "floatingStat1": { "title": "Cam kết việc làm", "desc": "Hoàn 100% học phí nếu không đỗ", "icon": "✓" },
-    "floatingStat2": { "title": "Review 1-1", "desc": "Sửa từng dòng code trên Git", "icon": "⚡" }
+    "floatingStat1": {
+      "title": "Cam kết việc làm",
+      "desc": "Hoàn 100% học phí nếu không đỗ",
+      "icon": "✓"
+    },
+    "floatingStat2": {
+      "title": "Review 1-1",
+      "desc": "Sửa từng dòng code trên Git",
+      "icon": "⚡"
+    }
   },
   "programs": [
     {
@@ -157,10 +245,22 @@
     }
   ],
   "stats": [
-    { "value": "98.2%", "label": "Học viên có việc làm sau 90 ngày" },
-    { "value": "5.200+", "label": "Lập trình viên đã tốt nghiệp" },
-    { "value": "18.5 Tr", "label": "Lương khởi điểm trung bình (VND/tháng)" },
-    { "value": "120+", "label": "Doanh nghiệp đối tác tuyển dụng" }
+    {
+      "value": "98.2%",
+      "label": "Học viên có việc làm sau 90 ngày"
+    },
+    {
+      "value": "5.200+",
+      "label": "Lập trình viên đã tốt nghiệp"
+    },
+    {
+      "value": "18.5 Tr",
+      "label": "Lương khởi điểm trung bình (VND/tháng)"
+    },
+    {
+      "value": "120+",
+      "label": "Doanh nghiệp đối tác tuyển dụng"
+    }
   ],
   "testimonials": [
     {
@@ -206,37 +306,96 @@
     "phone": "024 8888 6789",
     "email": "tuyensinh@codenest.edu.vn",
     "address": "Tầng 5, Tòa nhà Innovation Hub, Cầu Giấy, Hà Nội",
-    "programs": ["Frontend React & Next.js", "Backend Node.js & Cloud", "Fullstack Software Engineer", "Luyện Phỏng Vấn Tech"]
+    "programs": [
+      "Frontend React & Next.js",
+      "Backend Node.js & Cloud",
+      "Fullstack Software Engineer",
+      "Luyện Phỏng Vấn Tech"
+    ]
   },
   "footer": {
     "about": "CodeNest là hệ sinh thái đào tạo lập trình thực chiến, kết nối nhân lực công nghệ thông tin chất lượng cao với các doanh nghiệp trong và ngoài nước.",
     "copyright": "© 2026 CodeNest Academy. Đồ án dự thi Thiết kế Web.",
+    "brandLinks": [
+      {
+        "name": "Code Alpha",
+        "href": "#"
+      },
+      {
+        "name": "ABC Tech Academy",
+        "href": "#"
+      },
+      {
+        "name": "Dev XYZ Lab",
+        "href": "#"
+      },
+      {
+        "name": "Stack Beta",
+        "href": "#"
+      }
+    ],
     "columns": [
       {
         "title": "Chương trình đào tạo",
         "links": [
-          { "label": "Khóa Frontend React", "href": "#programs" },
-          { "label": "Khóa Backend Node.js", "href": "#programs" },
-          { "label": "Khóa Fullstack Engineer", "href": "#programs" },
-          { "label": "Luyện Phỏng Vấn Tech", "href": "#programs" }
+          {
+            "label": "Khóa Frontend React",
+            "href": "#programs"
+          },
+          {
+            "label": "Khóa Backend Node.js",
+            "href": "#programs"
+          },
+          {
+            "label": "Khóa Fullstack Engineer",
+            "href": "#programs"
+          },
+          {
+            "label": "Luyện Phỏng Vấn Tech",
+            "href": "#programs"
+          }
         ]
       },
       {
         "title": "Về CodeNest",
         "links": [
-          { "label": "Phương pháp đào tạo", "href": "#features" },
-          { "label": "Đội ngũ Mentor", "href": "#" },
-          { "label": "Doanh nghiệp đối tác", "href": "#" },
-          { "label": "Cam kết việc làm", "href": "#" }
+          {
+            "label": "Phương pháp đào tạo",
+            "href": "#features"
+          },
+          {
+            "label": "Đội ngũ Mentor",
+            "href": "#"
+          },
+          {
+            "label": "Doanh nghiệp đối tác",
+            "href": "#"
+          },
+          {
+            "label": "Cam kết việc làm",
+            "href": "#"
+          }
         ]
       },
       {
         "title": "Hỗ trợ học viên",
         "links": [
-          { "label": "Quy chế đào tạo", "href": "#" },
-          { "label": "Chính sách học phí", "href": "#" },
-          { "label": "Cộng đồng Discord", "href": "#" },
-          { "label": "Cổng thông tin tuyển dụng", "href": "#" }
+          {
+            "label": "Quy chế đào tạo",
+            "href": "#"
+          },
+          {
+            "label": "Chính sách học phí",
+            "href": "#"
+          },
+          {
+            "label": "Cộng đồng Discord",
+            "href": "#"
+          },
+          {
+            "label": "Cổng thông tin tuyển dụng",
+            "href": "#"
+          }
         ]
       }
     ]
