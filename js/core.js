@@ -4,15 +4,71 @@ window.appState = {
   data: null
 };
 
+// Hiển thị giao diện báo lỗi / chưa có dữ liệu cho thương hiệu
+export function renderEmptyBrandState(brandId = 'brand-b') {
+  const appEl = document.getElementById('app');
+  if (!appEl) return;
+
+  const letter = (brandId || '').replace('brand-', '').toUpperCase();
+  const brandName = `Brand ${letter || 'N/A'}`;
+
+  // Cập nhật tiêu đề trang
+  document.title = `${brandName} — Chưa có dữ liệu`;
+
+  appEl.innerHTML = `
+    <section class="empty-brand-state">
+      <div class="empty-state-card">
+        <div class="empty-state-icon">📁</div>
+        <span class="empty-state-badge">Chưa có dữ liệu</span>
+        <h2 class="empty-state-title">${brandName} chưa có dữ liệu cấu hình</h2>
+        <p class="empty-state-desc">
+          Hệ thống không tìm thấy dữ liệu hợp lệ trong file <code>data/${brandId}.json</code>. 
+          Cấu hình thương hiệu này hiện chưa có mã nguồn hoặc đang được thành viên khác phát triển.
+        </p>
+        <div class="empty-state-actions">
+          <button onclick="window.switchBrandTo('brand-b')" class="btn btn-primary">
+            Quay lại Brand B (CareerPath)
+          </button>
+          <button onclick="window.switchBrandTo('brand-a')" class="btn btn-secondary">
+            Xem Brand A (CodeNest)
+          </button>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+// Hàm hỗ trợ chuyển đổi nhanh thương hiệu
+window.switchBrandTo = function(targetBrandId) {
+  const selector = document.getElementById('brand-selector');
+  if (selector) selector.value = targetBrandId;
+  if (window.customizerInstance && typeof window.customizerInstance.switchBrand === 'function') {
+    window.customizerInstance.switchBrand(targetBrandId);
+  } else {
+    window.location.search = `?brand=${targetBrandId}`;
+  }
+};
+
+window.renderEmptyBrandState = renderEmptyBrandState;
+
 // fetch brand data 
 export async function loadBrandData(brandId = 'brand-b') {
   try {
     // waiting until get response
     const response = await fetch(`data/${brandId}.json`);
     if (!response.ok) {
-      throw new Error(`can't fetch brand data: ${brandId}`);
+      throw new Error(`File data/${brandId}.json không tồn tại (HTTP ${response.status})`);
     }
-    const data = await response.json();
+    const text = await response.text();
+    const cleanText = text.trim();
+    if (!cleanText || cleanText === '{}' || cleanText === '[]') {
+      throw new Error(`File data/${brandId}.json chưa có code/dữ liệu rỗng`);
+    }
+
+    const data = JSON.parse(cleanText);
+    if (!data.name || (!data.pages && !data.theme)) {
+      throw new Error(`Cấu trúc JSON trong ${brandId}.json chưa hoàn thiện`);
+    }
 
     // update state
     window.appState.currentBrand = brandId;
@@ -20,17 +76,8 @@ export async function loadBrandData(brandId = 'brand-b') {
 
     return data;
   } catch (e) {
-    console.error('Error loading brand data:', e);
-    const appEl = document.getElementById('app');
-    if (appEl) {
-      appEl.innerHTML = `
-        <div style="padding: 40px; text-align: center;">
-          <h2 style="color: red; margin-bottom: 12px;">❌ Error</h2>
-          <p>Không thể tải dữ liệu thương hiệu. Vui lòng kiểm tra lại file JSON.</p>
-          <button onclick="loadBrandData('brand-a')" style="margin-top: 16px; padding: 8px 16px; cursor: pointer;">Thử lại Brand A</button>
-        </div>
-      `;
-    }
+    console.warn(`[Core JIT] Thương hiệu ${brandId} chưa có dữ liệu:`, e.message);
+    renderEmptyBrandState(brandId);
     return null;
   }
 }
