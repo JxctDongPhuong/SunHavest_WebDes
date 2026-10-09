@@ -150,9 +150,18 @@ export async function renderPage(data) {
   }
 }
 
+// Expose core functions to window for interoperability
+window.loadBrandData = loadBrandData;
+window.applyTheme = applyTheme;
+window.renderPage = renderPage;
+
 async function initApp() {
+  // Check URL param first (e.g., ?brand=brand-a)
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialBrand = urlParams.get('brand') || 'brand-b';
+
   // load brand data 
-  const brandData = await loadBrandData('brand-b');
+  const brandData = await loadBrandData(initialBrand);
   if (brandData) {
     applyTheme(brandData.theme, brandData);
     await renderPage(brandData);
