@@ -40,6 +40,12 @@
     font-family: var(--font-body);
 }
 
+/*khai báo format của ul, ol (tự costumize)*/
+ul,
+ol {
+    list-style: none;
+}
+
 html {
     --font-size: 16px;
     --sctroll-behavior: smooth;
