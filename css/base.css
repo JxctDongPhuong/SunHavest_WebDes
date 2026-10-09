@@ -51,6 +51,7 @@ html {
     --sctroll-behavior: smooth;
     --text-rendering: optimizeLegibility;
     --font-smoothing: antialiased;
+    overflow-x: hidden; /* ngăn thanh cuộn ngang */
 }
 
 body {
@@ -61,6 +62,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* ngăn phần tử tràn ngang (floating cards, glow...) */
 }
 
 
