@@ -1,17 +1,17 @@
 /**
  * Module: customize.js
  * Nhiệm vụ:
- * 1. Tạo thanh điều khiển cố định (fixed) ở góc dưới bên trái màn hình.
- * 2. Cung cấp Dropdown chuyển đổi linh hoạt giữa 3 cấu hình JSON (Brand A, Brand B, Brand C).
- * 3. Cung cấp thanh chọn màu nhanh (Xanh lam, Vàng, Đỏ) và ô chọn màu tùy ý theo thời gian thực.
+ * 1. Tự động kiểm tra (scan) các file JSON trong thư mục data/ (không hardcode cố định danh sách).
+ * 2. Tìm thấy bao nhiêu file JSON thì sinh bấy nhiêu tùy chọn thương hiệu trên màn hình.
+ * 3. Kiểm tra nội dung bên trong file JSON xem có code hay không:
+ *    - Nếu có code đầy đủ: Tự động lấy tên (data.name) và màu sắc (theme.colorPrimary) từ file JSON.
+ *    - Nếu file trống / chưa có code: Hiển thị cảnh báo "(⚠️ Đang cập nhật)" ngay tại chỗ chọn brand.
+ * 4. Cung cấp thanh chọn màu nhanh (Xanh lam, Vàng, Đỏ) và Color Picker thời gian thực.
+ * 5. Luôn cố định (fixed) ở góc dưới bên trái màn hình dù cuộn chuột lên xuống.
  */
 
-// Danh sách thương hiệu tương ứng với các file JSON trong thư mục data/
-const BRAND_OPTIONS = [
-  { id: 'brand-a', name: 'Brand A — CodeNest (IT)', color: '#1d4ed8' },
-  { id: 'brand-b', name: 'Brand B — CareerPath (Hướng nghiệp)', color: '#0f9d8a' },
-  { id: 'brand-c', name: 'Brand C — SkillWorks (Đang phát triển)', color: '#ea580c' }
-];
+// Danh sách các ID tiềm năng để hệ thống tự động quét kiểm tra trong thư mục data/
+const CANDIDATE_BRANDS = ['brand-a', 'brand-b', 'brand-c', 'brand-d', 'brand-e', 'brand-f'];
 
 // 3 màu preset theo yêu cầu + mã màu
 const COLOR_PRESETS = [
@@ -22,7 +22,9 @@ const COLOR_PRESETS = [
 
 class LiveCustomizer {
   constructor() {
+    window.customizerInstance = this;
     this.currentBrand = this.getInitialBrand();
+    this.discoveredBrands = [];
     this.currentColor = null;
     this.isCollapsed = false;
     this.init();
@@ -34,227 +36,153 @@ class LiveCustomizer {
     return params.get('brand') || window.appState?.currentBrand || 'brand-b';
   }
 
-  init() {
-    this.injectStyles();
+  // Chuyển 'brand-a' -> 'Brand A', 'brand-b' -> 'Brand B'
+  formatBrandId(id) {
+    const letter = id.replace('brand-', '').toUpperCase();
+    return `Brand ${letter}`;
+  }
+
+  async init() {
+    // 1. Tự động quét kiểm tra tất cả các file JSON thực tế trong data/
+    this.discoveredBrands = await this.scanBrandFiles();
+    
+    // 2. Tạo giao diện bảng điều khiển dựa trên số lượng file tìm được
     this.createPanel();
+    
+    // 3. Gắn các sự kiện tương tác
     this.setupEvents();
+
+    // 4. Kiểm tra cảnh báo cho brand ban đầu
+    this.updateWarningState();
+
+    // 5. Nếu brand ban đầu chưa có code -> vẽ giao diện báo chưa có dữ liệu lên web!
+    const initialBrandInfo = this.discoveredBrands.find(b => b.id === this.currentBrand);
+    if (initialBrandInfo && !initialBrandInfo.hasCode) {
+      if (typeof window.renderEmptyBrandState === 'function') {
+        window.renderEmptyBrandState(this.currentBrand);
+      }
+    }
   }
 
-  // 1. Nhúng Style CSS cho thanh Customizer cố định ở góc trái
-  injectStyles() {
-    if (document.getElementById('customizer-styles')) return;
+  // ==========================================================
+  // QUÉT & KIỂM TRA ĐỘNG CÁC FILE JSON (KHÔNG HARDCODE)
+  // ==========================================================
+  async scanBrandFiles() {
+    const foundList = [];
 
-    const style = document.createElement('style');
-    style.id = 'customizer-styles';
-    style.textContent = `
-      /* Thanh điều khiển luôn cố định ở góc dưới bên trái */
-      #live-customize-panel {
-        position: fixed;
-        left: 20px;
-        bottom: 20px;
-        z-index: 99999;
-        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-        user-select: none;
-      }
+    // Quét song song các file tiềm năng trong thư mục data/
+    const checkPromises = CANDIDATE_BRANDS.map(async (id) => {
+      try {
+        const res = await fetch(`data/${id}.json`, { cache: 'no-cache' });
+        
+        // Nếu file KHÔNG tồn tại (404, 403,...) -> Bỏ qua hoàn toàn, không hiển thị
+        if (!res.ok) return null;
 
-      .customizer-box {
-        background: rgba(15, 23, 42, 0.94);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 16px;
-        padding: 16px 18px;
-        box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
-        color: #f8fafc;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        min-width: 285px;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-      }
+        const text = await res.text();
+        const trimmed = text.trim();
 
-      .customizer-box.is-collapsed {
-        display: none;
-      }
+        // TRƯỜNG HỢP 1: File tồn tại nhưng KHÔNG CÓ CODE (0 bytes, chỉ có khoảng trắng, hoặc rỗng)
+        if (!trimmed || trimmed === '{}' || trimmed === '[]') {
+          return {
+            id,
+            hasCode: false,
+            label: `${this.formatBrandId(id)} — (⚠️ Chưa có dữ liệu)`,
+            displayName: this.formatBrandId(id),
+            color: null,
+            data: null,
+            statusText: 'Chưa có code dữ liệu'
+          };
+        }
 
-      /* Nút icon tròn thu gọn / mở lại panel */
-      .customizer-toggle-btn {
-        position: fixed;
-        left: 20px;
-        bottom: 20px;
-        z-index: 99998;
-        background: #0f172a;
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        font-size: 1.2rem;
-        transition: transform 0.2s ease, background-color 0.2s ease;
-      }
+        // TRƯỜNG HỢP 2: File có nội dung, kiểm tra xem có parse được JSON và có cấu trúc hợp lệ không
+        try {
+          const json = JSON.parse(trimmed);
 
-      .customizer-toggle-btn:hover {
-        transform: scale(1.08);
-        background: #1e293b;
-      }
+          // Một file cấu hình hợp lệ cần có ít nhất thông tin tên (name) và các trang/giao diện (pages hoặc theme)
+          const hasValidContent = Boolean(
+            json && 
+            typeof json === 'object' && 
+            json.name && 
+            (json.pages || json.theme)
+          );
 
-      .customizer-toggle-btn.is-visible {
-        display: flex;
-      }
+          if (!hasValidContent) {
+            // File tồn tại nhưng thiếu các trường cấu hình quan trọng -> Chưa có dữ liệu
+            return {
+              id,
+              hasCode: false,
+              label: `${json?.name || this.formatBrandId(id)} — (⚠️ Chưa có dữ liệu)`,
+              displayName: json?.name || this.formatBrandId(id),
+              color: json?.theme?.colorPrimary || null,
+              data: json,
+              statusText: 'Cấu hình chưa hoàn thiện'
+            };
+          }
 
-      /* Header của bảng điều khiển */
-      .customizer-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 8px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
+          // File CÓ CODE ĐẦY ĐỦ: Lấy trực tiếp thông tin từ chính file JSON
+          return {
+            id,
+            hasCode: true,
+            label: `${this.formatBrandId(id)} — ${json.name}`,
+            displayName: json.name,
+            color: json.theme?.colorPrimary || null,
+            data: json,
+            statusText: 'Hoạt động'
+          };
 
-      .customizer-title {
-        font-size: 0.82rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #94a3b8;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
+        } catch (syntaxErr) {
+          // File có nội dung nhưng bị lỗi cú pháp JSON
+          return {
+            id,
+            hasCode: false,
+            label: `${this.formatBrandId(id)} — (⚠️ Lỗi cú pháp JSON)`,
+            displayName: this.formatBrandId(id),
+            color: null,
+            data: null,
+            statusText: 'Lỗi cú pháp JSON'
+          };
+        }
 
-      .customizer-close-btn {
-        background: transparent;
-        border: none;
-        color: #94a3b8;
-        cursor: pointer;
-        padding: 2px 6px;
-        font-size: 1rem;
-        border-radius: 4px;
-        line-height: 1;
-        transition: all 0.2s ease;
+      } catch (networkErr) {
+        return null;
       }
+    });
 
-      .customizer-close-btn:hover {
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.1);
-      }
+    const results = await Promise.all(checkPromises);
 
-      /* Nhóm cấu hình Brand JSON */
-      .customizer-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
+    // Lọc lấy các file JSON thực tế tồn tại
+    results.forEach(item => {
+      if (item) foundList.push(item);
+    });
 
-      .customizer-label {
-        font-size: 0.76rem;
-        font-weight: 600;
-        color: #cbd5e1;
-      }
-
-      /* Dropdown chọn Brand */
-      .customizer-select {
-        background: #1e293b;
-        color: #f8fafc;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 8px 12px;
-        border-radius: 8px;
-        font-size: 0.82rem;
-        font-weight: 500;
-        cursor: pointer;
-        outline: none;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .customizer-select:hover,
-      .customizer-select:focus {
-        border-color: #38bdf8;
-        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
-      }
-
-      /* Thanh chọn màu nhanh */
-      .color-picker-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: rgba(30, 41, 59, 0.7);
-        padding: 6px 10px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .color-dot-btn {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        cursor: pointer;
-        position: relative;
-        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
-        padding: 0;
-      }
-
-      .color-dot-btn:hover {
-        transform: scale(1.18);
-      }
-
-      .color-dot-btn.is-active {
-        border-color: #ffffff;
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
-        transform: scale(1.12);
-      }
-
-      /* Ô chọn màu tùy ý (input color) */
-      .custom-color-wrap {
-        margin-left: auto;
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-
-      .custom-color-input {
-        width: 28px;
-        height: 28px;
-        padding: 0;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        cursor: pointer;
-        background: transparent;
-        overflow: hidden;
-      }
-
-      .custom-color-input::-webkit-color-swatch-wrapper {
-        padding: 0;
-      }
-
-      .custom-color-input::-webkit-color-swatch {
-        border: none;
-        border-radius: 50%;
-      }
-    `;
-    document.head.appendChild(style);
+    console.log(`🔍 [Live Customizer] Đã quét thư mục data/: Tìm thấy ${foundList.length} file JSON.`);
+    return foundList;
   }
 
-  // 2. Tạo cây DOM của thanh điều khiển
+  // ==========================================================
+  // TẠO GIAO DIỆN BẢNG ĐIỀU KHIỂN CỐ ĐỊNH Ở GÓC TRÁI
+  // ==========================================================
   createPanel() {
-    // Xóa panel cũ nếu có
     const existing = document.getElementById('live-customize-panel');
     if (existing) existing.remove();
 
     const container = document.createElement('div');
     container.id = 'live-customize-panel';
 
-    const optionsHtml = BRAND_OPTIONS.map(b => `
-      <option value="${b.id}" ${b.id === this.currentBrand ? 'selected' : ''}>
-        ${b.name}
-      </option>
-    `).join('');
+    // Sinh danh sách <option> dựa trên số lượng file JSON thực tế quét được
+    const optionsHtml = this.discoveredBrands.length > 0
+      ? this.discoveredBrands.map(b => `
+          <option 
+            value="${b.id}" 
+            class="${b.hasCode ? '' : 'is-updating'}"
+            ${b.id === this.currentBrand ? 'selected' : ''}
+          >
+            ${b.label}
+          </option>
+        `).join('')
+      : `<option value="">Không tìm thấy file JSON nào</option>`;
 
+    // Sinh các nút màu tròn (Xanh lam, Vàng, Đỏ)
     const colorDotsHtml = COLOR_PRESETS.map(c => `
       <button 
         type="button" 
@@ -277,17 +205,26 @@ class LiveCustomizer {
           <span class="customizer-title">
             <span>⚙️</span> Live Customizer
           </span>
+          <span class="customizer-count-badge" title="Số file JSON thực tế phát hiện được">
+            ${this.discoveredBrands.length} files JSON
+          </span>
           <button type="button" class="customizer-close-btn" id="customizer-close-btn" title="Thu nhỏ">
             ✕
           </button>
         </div>
 
-        <!-- 1. Dropdown chọn cấu hình JSON -->
+        <!-- 1. Dropdown chọn cấu hình JSON (sinh động theo số file quét được) -->
         <div class="customizer-group">
           <label class="customizer-label" for="brand-selector">📂 Cấu hình Thương hiệu (JSON):</label>
           <select class="customizer-select" id="brand-selector">
             ${optionsHtml}
           </select>
+
+          <!-- Hộp cảnh báo nếu Brand chưa có code -->
+          <div class="brand-alert-banner is-hidden" id="brand-warning-box">
+            <span>⚠️</span>
+            <span id="brand-warning-text">Thương hiệu này chưa có code (Đang cập nhật).</span>
+          </div>
         </div>
 
         <!-- 2. Thanh chọn đổi màu (Xanh lam, Vàng, Đỏ) -->
@@ -308,7 +245,28 @@ class LiveCustomizer {
     document.body.appendChild(container);
   }
 
-  // 3. Gắn các sự kiện tương tác
+  // ==========================================================
+  // CẬP NHẬT TRẠNG THÁI CẢNH BÁO KHI CHỌN BRAND
+  // ==========================================================
+  updateWarningState() {
+    const warningBox = document.getElementById('brand-warning-box');
+    const warningText = document.getElementById('brand-warning-text');
+    if (!warningBox || !warningText) return;
+
+    const brandInfo = this.discoveredBrands.find(b => b.id === this.currentBrand);
+
+    // Nếu brand không tồn tại hoặc KHÔNG CÓ CODE
+    if (brandInfo && !brandInfo.hasCode) {
+      warningText.textContent = `File ${brandInfo.id}.json chưa có code dữ liệu (Đang cập nhật).`;
+      warningBox.classList.remove('is-hidden');
+    } else {
+      warningBox.classList.add('is-hidden');
+    }
+  }
+
+  // ==========================================================
+  // GẮN CÁC SỰ KIỆN TƯƠNG TÁC
+  // ==========================================================
   setupEvents() {
     const brandSelect = document.getElementById('brand-selector');
     const colorDots = document.querySelectorAll('.color-dot-btn');
@@ -317,7 +275,7 @@ class LiveCustomizer {
     const openBtn = document.getElementById('customizer-open-btn');
     const mainBox = document.getElementById('customizer-main-box');
 
-    // A. Chuyển đổi giữa 3 cấu hình JSON
+    // A. Chuyển đổi giữa các file JSON được tìm thấy
     if (brandSelect) {
       brandSelect.addEventListener('change', async (e) => {
         const selectedBrand = e.target.value;
@@ -347,7 +305,7 @@ class LiveCustomizer {
       });
     }
 
-    // D. Thu gọn / Mở bảng
+    // D. Thu gọn / Mở bảng điều khiển
     if (closeBtn && openBtn && mainBox) {
       closeBtn.addEventListener('click', () => {
         mainBox.classList.add('is-collapsed');
@@ -361,7 +319,9 @@ class LiveCustomizer {
     }
   }
 
-  // 4. Hàm nạp lại dữ liệu Brand và vẽ lại trang
+  // ==========================================================
+  // CHUYỂN ĐỔI THƯƠNG HIỆU & NẠP LẠI GIAO DIỆN
+  // ==========================================================
   async switchBrand(brandId) {
     this.currentBrand = brandId;
 
@@ -369,8 +329,22 @@ class LiveCustomizer {
     const newUrl = `${window.location.pathname}?brand=${brandId}`;
     window.history.replaceState({ brand: brandId }, '', newUrl);
 
+    // Cập nhật cảnh báo nếu brand này chưa có code
+    this.updateWarningState();
+
+    const brandInfo = this.discoveredBrands.find(b => b.id === brandId);
+
+    // NẾU THƯƠNG HIỆU NÀY CHƯA CÓ CODE / CHƯA CÓ DỮ LIỆU:
+    // Vẫn chuyển vào brand đó nhưng web sẽ hiển thị lỗi chưa có dữ liệu!
+    if (!brandInfo || !brandInfo.hasCode) {
+      console.warn(`⚠️ [Live Customizer] Đã chuyển vào ${brandId} (Chưa có dữ liệu cấu hình).`);
+      if (typeof window.renderEmptyBrandState === 'function') {
+        window.renderEmptyBrandState(brandId);
+      }
+      return;
+    }
+
     try {
-      // Dùng hàm từ core.js (được gắn vào window)
       if (typeof window.loadBrandData === 'function') {
         const data = await window.loadBrandData(brandId);
         if (data) {
@@ -380,29 +354,31 @@ class LiveCustomizer {
           if (typeof window.renderPage === 'function') {
             await window.renderPage(data);
           }
-          console.log(`✅ Đã chuyển đổi sang cấu hình: ${data.name} (${brandId}.json)`);
-        } else {
-          console.warn(`File data/${brandId}.json chưa sẵn sàng (đang do thành viên khác phụ trách).`);
+          console.log(`✅ [Live Customizer] Đã chuyển đổi sang: ${data.name} (${brandId}.json)`);
         }
       }
     } catch (err) {
-      console.warn(`Lỗi khi chuyển đổi thương hiệu ${brandId}:`, err);
+      console.warn(`Lỗi khi nạp dữ liệu thương hiệu ${brandId}:`, err);
+      if (typeof window.renderEmptyBrandState === 'function') {
+        window.renderEmptyBrandState(brandId);
+      }
     }
   }
 
-  // 5. Hàm thay đổi biến màu CSS trên toàn trang
+  // ==========================================================
+  // THAY ĐỔI BIẾN MÀU CSS CHỦ ĐẠO (:root)
+  // ==========================================================
   applyCustomColor(hex) {
     this.currentColor = hex;
     const root = document.documentElement;
 
-    // Cập nhật các Design Tokens màu sắc chính
     root.style.setProperty('--color-primary', hex);
     root.style.setProperty('--color-primary-hover', `color-mix(in srgb, ${hex} 82%, black)`);
     root.style.setProperty('--color-primary-light', `color-mix(in srgb, ${hex} 12%, white)`);
     root.style.setProperty('--color-primary-subtle', `color-mix(in srgb, ${hex} 8%, transparent)`);
     root.style.setProperty('--color-primary-soft', `color-mix(in srgb, ${hex} 28%, white)`);
 
-    console.log(`🎨 Đã đổi màu chủ đạo sang: ${hex}`);
+    console.log(`🎨 [Live Customizer] Đã đổi màu chủ đạo sang: ${hex}`);
   }
 }
 
