@@ -229,19 +229,28 @@
   ],
   "steps": [
     {
-      "num": "01",
+      "step": "01",
       "title": "Đánh giá năng lực & Lập kế hoạch học tập",
-      "desc": "Thực hiện bài kiểm tra tư duy logic và nhận lộ trình học tập được may đo riêng dựa trên mục tiêu nghề nghiệp và quỹ thời gian của bạn."
+      "desc": "Thực hiện bài kiểm tra tư duy logic và nhận lộ trình học tập được may đo riêng dựa trên mục tiêu nghề nghiệp và quỹ thời gian của bạn.",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80"
     },
     {
-      "num": "02",
+      "step": "02",
       "title": "Học tương tác & Tích lũy Portfolio",
-      "desc": "Tham gia các buổi học tương tác cao, hoàn thành các sprint dự án và xây dựng hồ sơ GitHub ấn tượng để gây ấn tượng mạnh với nhà tuyển dụng."
+      "desc": "Tham gia các buổi học tương tác cao, hoàn thành các sprint dự án và xây dựng hồ sơ GitHub ấn tượng để gây ấn tượng mạnh với nhà tuyển dụng.",
+      "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80"
     },
     {
-      "num": "03",
+      "step": "03",
       "title": "Luyện phỏng vấn & Nhận offer",
-      "desc": "Tham gia vòng phỏng vấn thử nghiệm thực tế với HR và Tech Lead, nhận phản hồi cải thiện và kết nối trực tiếp với doanh nghiệp phù hợp."
+      "desc": "Tham gia vòng phỏng vấn thử nghiệm thực tế với HR và Tech Lead, nhận phản hồi cải thiện và kết nối trực tiếp với doanh nghiệp phù hợp.",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "step": "04",
+      "title": "Làm việc tại doanh nghiệp",
+      "desc": "Được làm việc tại doanh nghiệp uy tín với mức lương hấp dẫn.",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80"
     }
   ],
   "stats": [

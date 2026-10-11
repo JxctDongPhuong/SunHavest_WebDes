@@ -1,0 +1,318 @@
+/* ==========================================================
+   LIVE CUSTOMIZER WIDGET STYLES (css/customize.css)
+   ========================================================== */
+
+/* Thanh điều khiển luôn cố định ở góc dưới bên trái */
+#live-customize-panel {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 99999;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  user-select: none;
+}
+
+.customizer-box {
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 285px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.customizer-box.is-collapsed {
+  display: none;
+}
+
+/* Nút icon tròn thu gọn / mở lại panel */
+.customizer-toggle-btn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 99998;
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  font-size: 1.2rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.customizer-toggle-btn:hover {
+  transform: scale(1.08);
+  background: #1e293b;
+}
+
+.customizer-toggle-btn.is-visible {
+  display: flex;
+}
+
+/* Header của bảng điều khiển */
+.customizer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.customizer-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.customizer-close-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 1rem;
+  border-radius: 4px;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.customizer-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Nhóm cấu hình Brand JSON */
+.customizer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.customizer-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+/* Dropdown chọn Brand */
+.customizer-select {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.customizer-select:hover,
+.customizer-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+/* Badge hiển thị số lượng file JSON đã quét được */
+.customizer-count-badge {
+  font-size: 0.68rem;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 2px 7px;
+  border-radius: 99px;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+/* Hộp cảnh báo khi Brand chưa có code / đang cập nhật */
+.brand-alert-banner {
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  animation: fadeIn 0.25s ease;
+}
+
+.brand-alert-banner.is-hidden {
+  display: none;
+}
+
+.customizer-select option.is-updating {
+  color: #fbbf24;
+}
+
+/* Thanh chọn màu nhanh */
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(30, 41, 59, 0.7);
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.color-dot-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  padding: 0;
+}
+
+.color-dot-btn:hover {
+  transform: scale(1.18);
+}
+
+.color-dot-btn.is-active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+  transform: scale(1.12);
+}
+
+/* Ô chọn màu tùy ý (input color) */
+.custom-color-wrap {
+  margin-left: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.custom-color-input {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  overflow: hidden;
+}
+
+.custom-color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.customizer-color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+/* ==========================================================
+   MÀN HÌNH BÁO THƯƠNG HIỆU CHƯA CÓ DỮ LIỆU
+   ========================================================== */
+.empty-brand-state {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.empty-state-card {
+  background: var(--color-surface, #ffffff);
+  border: 1.5px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-xl, 24px);
+  padding: 48px 36px;
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInScale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.empty-state-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.empty-state-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 16px;
+}
+
+.empty-state-title {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--color-text-main, #0f172a);
+  margin-bottom: 12px;
+  font-family: var(--font-heading, sans-serif);
+}
+
+.empty-state-desc {
+  font-size: 0.96rem;
+  color: var(--color-text-muted, #64748b);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 440px;
+}
+
+.empty-state-desc code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.empty-state-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+

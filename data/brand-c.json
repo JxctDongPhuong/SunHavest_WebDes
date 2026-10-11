@@ -1,0 +1,393 @@
+{
+  "id": "brand-c",
+  "name": "Khoa Công nghệ Thông tin",
+  "tagline": "Tri thức số, kiến tạo tương lai",
+  "slogan": "Học công nghệ, phát triển tư duy, kiến tạo giải pháp cho xã hội số",
+  "cta": "Khám phá ngành học",
+  "favicon": "https://img.icons8.com/color/96/artificial-intelligence.png",
+  "theme": {
+    "colorPrimary": "#0756a6",
+    "colorPrimaryHover": "#064785",
+    "colorPrimaryLight": "#e8f2ff",
+    "colorPrimarySubtle": "rgba(7, 86, 166, 0.08)",
+    "colorBg": "#f5f8fc",
+    "colorSurface": "#ffffff",
+    "fontHeading": "Plus Jakarta Sans"
+  },
+  "menu": [
+    {
+      "label": "Lĩnh vực CNTT",
+      "href": "#programs",
+      "children": [
+        {
+          "label": "Công nghệ phần mềm",
+          "desc": "Phân tích, thiết kế và phát triển ứng dụng",
+          "href": "#programs"
+        },
+        {
+          "label": "Hệ thống thông tin",
+          "desc": "Kết nối dữ liệu, quy trình và nhu cầu tổ chức",
+          "href": "#programs"
+        },
+        {
+          "label": "Mạng máy tính và an toàn thông tin",
+          "desc": "Hạ tầng mạng và bảo mật hệ thống",
+          "href": "#programs"
+        },
+        {
+          "label": "Dữ liệu và trí tuệ nhân tạo",
+          "desc": "Phân tích dữ liệu và tìm hiểu AI",
+          "href": "#programs"
+        }
+      ]
+    },
+    {
+      "label": "Về khoa",
+      "href": "#features"
+    },
+    {
+      "label": "Lộ trình học tập",
+      "href": "#steps"
+    },
+    {
+      "label": "Trải nghiệm sinh viên",
+      "href": "#testimonials"
+    },
+    {
+      "label": "FAQ",
+      "href": "#faq"
+    },
+    {
+      "label": "Liên hệ",
+      "href": "#contact"
+    }
+  ],
+  "pages": {
+    "home": [
+      {
+        "type": "header"
+      },
+      {
+        "type": "hero",
+        "variant": "split"
+      },
+      {
+        "type": "stats",
+        "source": "stats"
+      },
+      {
+        "type": "features",
+        "source": "features",
+        "tag": "Học tập và sáng tạo",
+        "title": "Học công nghệ bằng tư duy thực tiễn",
+        "subtitle": "Rèn tư duy giải quyết vấn đề và vận dụng kiến thức qua bài tập, đồ án"
+      },
+      {
+        "type": "cards",
+        "source": "programs",
+        "tag": "Lĩnh vực đào tạo",
+        "title": "Khám phá các hướng đi trong Công nghệ Thông tin",
+        "subtitle": "Tìm hiểu những lĩnh vực công nghệ phổ biến và lựa chọn hướng phát triển phù hợp"
+      },
+      {
+        "type": "testimonials",
+        "source": "testimonials",
+        "tag": "Đời sống sinh viên",
+        "title": "Học hỏi, kết nối và cùng phát triển",
+        "subtitle": "Nội dung minh họa về tinh thần học tập và trải nghiệm dự án"
+      },
+      {
+        "type": "steps",
+        "source": "steps",
+        "tag": "Hành trình học tập",
+        "title": "4 chặng từ nền tảng đến sẵn sàng nghề nghiệp",
+        "subtitle": "Khám phá CNTT, xây dựng nền tảng, học chuyên sâu và vận dụng kiến thức"
+      },
+      {
+        "type": "faq",
+        "source": "faq",
+        "limit": 4,
+        "tag": "Giải đáp",
+        "title": "Câu hỏi thường gặp",
+        "subtitle": "Thông tin tham khảo cho người quan tâm đến lĩnh vực CNTT"
+      },
+      {
+        "type": "contact",
+        "source": "contact",
+        "tag": "Kết nối",
+        "title": "Tìm hiểu Khoa Công nghệ Thông tin",
+        "subtitle": "Kiểm tra các kênh chính thức của trường để xác nhận thông tin đào tạo"
+      },
+      {
+        "type": "footer"
+      },
+      {
+        "type": "sticky-cta"
+      }
+    ]
+  },
+  "hero": {
+    "badge": "Trường Đại học Mở Thành phố Hồ Chí Minh",
+    "badgeTag": "CÔNG NGHỆ THÔNG TIN",
+    "title": "Khoa Công nghệ Thông tin – Đại học Mở TP.HCM",
+    "desc": "Khám phá thế giới công nghệ qua tư duy logic, kiến thức nền tảng và trải nghiệm xây dựng sản phẩm số. Phát triển năng lực tự học để thích ứng với lĩnh vực công nghệ không ngừng thay đổi.",
+    "ctaText": "Khám phá lĩnh vực học tập",
+    "secondaryCtaText": "Xem hành trình học tập",
+    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+    "floatingStat1": {
+      "title": "Tư duy công nghệ",
+      "desc": "Phân tích và giải quyết vấn đề",
+      "icon": "★"
+    },
+    "floatingStat2": {
+      "title": "Học qua dự án",
+      "desc": "Kết nối kiến thức với thực hành",
+      "icon": "✦"
+    }
+  },
+  "programs": [
+    {
+      "id": "software-engineering",
+      "badge": "Phát triển sản phẩm",
+      "title": "Công Nghệ Phần Mềm",
+      "desc": "Tìm hiểu phân tích yêu cầu, thiết kế, lập trình, kiểm thử và bảo trì phần mềm cho web và ứng dụng.",
+      "duration": "Theo chương trình đào tạo chính thức",
+      "level": "Từ nền tảng đến chuyên sâu",
+      "price": "Liên hệ trường để biết thông tin chính thức",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80",
+      "action": "Tìm hiểu lĩnh vực"
+    },
+    {
+      "id": "information-systems",
+      "badge": "Công nghệ và nghiệp vụ",
+      "title": "Hệ Thống Thông Tin",
+      "desc": "Khám phá phân tích yêu cầu tổ chức, thiết kế cơ sở dữ liệu và hệ thống hỗ trợ quản lý, vận hành, ra quyết định.",
+      "duration": "Theo chương trình đào tạo chính thức",
+      "level": "Từ nền tảng đến chuyên sâu",
+      "price": "Liên hệ trường để biết thông tin chính thức",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+      "action": "Tìm hiểu lĩnh vực"
+    },
+    {
+      "id": "networks-security",
+      "badge": "Hạ tầng và bảo mật",
+      "title": "Mạng Máy Tính Và An Toàn Thông Tin",
+      "desc": "Tìm hiểu nguyên lý mạng, hệ điều hành, quản trị hạ tầng và kiến thức nền tảng về bảo vệ hệ thống thông tin.",
+      "duration": "Theo chương trình đào tạo chính thức",
+      "level": "Từ nền tảng đến chuyên sâu",
+      "price": "Liên hệ trường để biết thông tin chính thức",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "action": "Tìm hiểu lĩnh vực"
+    },
+    {
+      "id": "data-ai",
+      "badge": "Lĩnh vực công nghệ",
+      "title": "Dữ Liệu Và Trí Tuệ Nhân Tạo",
+      "desc": "Làm quen với tư duy dữ liệu, lập trình phân tích và các khái niệm cơ bản về học máy, trí tuệ nhân tạo.",
+      "duration": "Tùy học phần và định hướng chuyên môn",
+      "level": "Cần xây dựng nền tảng toán và lập trình",
+      "price": "Thông tin chương trình cần xác nhận",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
+      "action": "Khám phá lĩnh vực"
+    }
+  ],
+  "features": [
+    {
+      "index": "01",
+      "title": "Nền tảng khoa học và tư duy giải quyết vấn đề",
+      "desc": "CNTT không chỉ là viết mã. Người học cần rèn tư duy logic, khả năng phân tích, thiết kế giải pháp và đánh giá kết quả.",
+      "highlights": [
+        "Tư duy thuật toán và lập trình",
+        "Kiến thức cơ sở dữ liệu và hệ thống",
+        "Phân tích vấn đề theo từng bước"
+      ],
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "02",
+      "title": "Thực hành qua bài tập và đồ án",
+      "desc": "Vận dụng kiến thức vào bài tập và dự án nhóm để rèn khả năng lập kế hoạch, phối hợp và trình bày giải pháp.",
+      "highlights": [
+        "Làm việc nhóm và quản lý phiên bản",
+        "Thiết kế, lập trình và kiểm thử",
+        "Trình bày sản phẩm và tài liệu kỹ thuật"
+      ],
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "index": "03",
+      "title": "Phát triển kỹ năng nghề nghiệp và tự học",
+      "desc": "Thói quen tự học, đọc tài liệu, giao tiếp và cập nhật kiến thức giúp người học thích ứng với công nghệ thay đổi nhanh.",
+      "highlights": [
+        "Đọc tài liệu kỹ thuật",
+        "Giao tiếp và cộng tác",
+        "Xây dựng portfolio dự án cá nhân"
+      ],
+      "image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80"
+    }
+  ],
+  "steps": [
+    {
+      "step": "Chặng 1",
+      "title": "Khám phá công nghệ và định hướng",
+      "desc": "Làm quen với các lĩnh vực CNTT, xác định sở thích và hình dung những vấn đề công nghệ muốn tìm hiểu. Tập xây dựng thói quen học tập chủ động.",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "step": "Chặng 2",
+      "title": "Xây dựng nền tảng cốt lõi",
+      "desc": "Rèn tư duy lập trình, thuật toán, toán học cơ sở, cơ sở dữ liệu và kiến thức máy tính để chuẩn bị cho học phần chuyên sâu.",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "step": "Chặng 3",
+      "title": "Học chuyên sâu và phát triển dự án",
+      "desc": "Tìm hiểu các hướng chuyên môn, vận dụng kiến thức vào bài tập và dự án, đồng thời rèn kỹ năng làm việc nhóm và trình bày sản phẩm.",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "step": "Chặng 4",
+      "title": "Hoàn thiện năng lực và chuẩn bị nghề nghiệp",
+      "desc": "Tổng hợp sản phẩm đã thực hiện, xây dựng portfolio, luyện kỹ năng phỏng vấn và tìm hiểu cơ hội thực tập hoặc việc làm phù hợp.",
+      "image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "stats": [
+    {
+      "value": "4",
+      "label": "Chặng gợi ý trong hành trình học CNTT"
+    },
+    {
+      "value": "4",
+      "label": "Lĩnh vực công nghệ được giới thiệu"
+    },
+    {
+      "value": "Dự án",
+      "label": "Vận dụng kiến thức qua thực hành"
+    },
+    {
+      "value": "Suốt đời",
+      "label": "Tinh thần tự học và cập nhật công nghệ"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Sinh viên CNTT",
+      "role": "Nội dung minh họa",
+      "quote": "Các dự án học tập là cơ hội kết nối kiến thức lập trình với việc giải quyết bài toán cụ thể, đồng thời học cách phối hợp với các thành viên trong nhóm.",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Nhóm đồ án",
+      "role": "Nội dung minh họa",
+      "quote": "Việc phân chia nhiệm vụ, quản lý mã nguồn và trình bày sản phẩm giúp nhóm hiểu hơn về quy trình phát triển phần mềm.",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      "name": "Người học công nghệ",
+      "role": "Nội dung minh họa",
+      "quote": "Tự học tài liệu và xây dựng sản phẩm cá nhân là cách để củng cố kiến thức và tìm hiểu lĩnh vực mình yêu thích.",
+      "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=150&q=80"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Đây có phải website chính thức của trường không?",
+      "a": "Đây là dữ liệu mẫu phục vụ thiết kế website giới thiệu, không phải website chính thức. Hãy truy cập ou.edu.vn để xác nhận thông tin đào tạo và tuyển sinh."
+    },
+    {
+      "q": "Tôi nên bắt đầu học CNTT từ đâu?",
+      "a": "Bạn có thể bắt đầu bằng tư duy thuật toán và lập trình cơ bản, đồng thời tìm hiểu các lĩnh vực phần mềm, hệ thống thông tin, mạng máy tính và dữ liệu."
+    },
+    {
+      "q": "Bốn chặng học tập có phải lộ trình bắt buộc của trường không?",
+      "a": "Không. Đây là lộ trình tham khảo được xây dựng cho giao diện website, không thay thế chương trình đào tạo hoặc kế hoạch học tập chính thức của trường."
+    },
+    {
+      "q": "Tôi xem thông tin tuyển sinh ở đâu?",
+      "a": "Hãy tham khảo website và các kênh chính thức của Trường Đại học Mở TP.HCM để kiểm tra tên ngành, phương thức tuyển sinh và chương trình đào tạo mới nhất."
+    }
+  ],
+  "contact": {
+    "title": "Kết nối với Trường Đại học Mở TP.HCM",
+    "desc": "Vui lòng kiểm tra các kênh liên hệ chính thức của trường để xác nhận thông tin ngành học, tuyển sinh và chương trình đào tạo.",
+    "phone": "Vui lòng xem kênh chính thức của trường",
+    "email": "Vui lòng xem kênh chính thức của trường",
+    "address": "Trường Đại học Mở Thành phố Hồ Chí Minh, Việt Nam",
+    "programs": [
+      "Công nghệ phần mềm",
+      "Hệ thống thông tin",
+      "Mạng máy tính và an toàn thông tin",
+      "Dữ liệu và trí tuệ nhân tạo"
+    ]
+  },
+  "footer": {
+    "about": "Website giới thiệu minh họa về lĩnh vực Công nghệ Thông tin, hướng học tập, thực hành dự án và phát triển kỹ năng. Không phải website chính thức của Trường Đại học Mở TP.HCM.",
+    "copyright": "© 2026 · Giao diện minh họa Khoa Công nghệ Thông tin – Đại học Mở TP.HCM.",
+    "columns": [
+      {
+        "title": "Lĩnh vực CNTT",
+        "links": [
+          {
+            "label": "Công nghệ phần mềm",
+            "href": "#programs"
+          },
+          {
+            "label": "Hệ thống thông tin",
+            "href": "#programs"
+          },
+          {
+            "label": "Mạng và an toàn thông tin",
+            "href": "#programs"
+          },
+          {
+            "label": "Dữ liệu và AI",
+            "href": "#programs"
+          }
+        ]
+      },
+      {
+        "title": "Hành trình học tập",
+        "links": [
+          {
+            "label": "Khám phá công nghệ",
+            "href": "#steps"
+          },
+          {
+            "label": "Xây dựng nền tảng",
+            "href": "#steps"
+          },
+          {
+            "label": "Dự án chuyên sâu",
+            "href": "#steps"
+          },
+          {
+            "label": "Chuẩn bị nghề nghiệp",
+            "href": "#steps"
+          }
+        ]
+      },
+      {
+        "title": "Thông tin",
+        "links": [
+          {
+            "label": "Phương pháp học tập",
+            "href": "#features"
+          },
+          {
+            "label": "Câu hỏi thường gặp",
+            "href": "#faq"
+          },
+          {
+            "label": "Liên hệ",
+            "href": "#contact"
+          },
+          {
+            "label": "Website chính thức của trường",
+            "href": "https://ou.edu.vn/"
+          }
+        ]
+      }
+    ]
+  }
+}

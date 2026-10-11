@@ -51,7 +51,6 @@ html {
     --sctroll-behavior: smooth;
     --text-rendering: optimizeLegibility;
     --font-smoothing: antialiased;
-    overflow-x: hidden; /* ngăn thanh cuộn ngang */
 }
 
 body {
@@ -62,7 +61,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* ngăn phần tử tràn ngang (floating cards, glow...) */
+    overflow-x: hidden;
+    /* ngăn phần tử tràn ngang (floating cards, glow...) */
 }
 
 
@@ -135,8 +135,8 @@ img {
 
 /*khai báo khoảng cách section (tự costumize)*/
 .section-wrapper {
-    padding-top: clamp(3.5rem, 6vw, 6rem);
-    padding-bottom: clamp(3.5rem, 6vw, 6rem);
+    /*padding-top: clamp(3.5rem, 6vw, 6rem);*/
+    padding-bottom: clamp(7.5rem, 12vw, 12rem);
 }
 
 /*khai báo khoảng cách của header section (tự costumize)*/
