@@ -198,9 +198,6 @@ Do kiến trúc JIT sử dụng dynamic `import()` và `fetch()`, hệ thống y
 
 ### 1. Khởi chạy bằng Node.js:
 ```bash
-# Di chuyển vào thư mục dự án
-cd minithinh-jit
-
 # Chạy server tĩnh (mặc định cổng 3000)
 npx serve
 ```
