@@ -14,7 +14,7 @@ const BRAND_OPTIONS = [
 ];
 
 // 3 màu preset theo yêu cầu + mã màu
-const COLOR_PRESETS = [
+const COLOR_PRESETS = [ 
   { id: 'blue', label: 'Xanh lam', hex: '#1358e8' },
   { id: 'yellow', label: 'Vàng', hex: '#f59e0b' },
   { id: 'red', label: 'Đỏ', hex: '#ef4444' }
